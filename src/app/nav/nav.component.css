@@ -1,0 +1,74 @@
+@import "primeicons/primeicons.css";
+.navbar {
+  background-color: #000;
+  color: #fff;
+  padding: 1rem 2rem;
+}
+
+.navbar .logo {
+  color: #fff;
+  font-weight: 600;
+  font-size: 2.1rem;
+  text-decoration: none;
+}
+.navbar .logo span {
+  color: #C06B3E;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+  background-color: #444;
+}
+
+.active-link {
+  background-color: #555;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+/* .sliding-content {
+  transition: transform 0.3s ease;
+  transform: translateX(0);
+}
+
+.sliding-content.show {
+  transform: translateX(-100%);
+} */

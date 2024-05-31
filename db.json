@@ -1,0 +1,6 @@
+{
+  "items": [
+    { "id": 1, "name": "Coffee", "price": "$15.00", "description": "Enjoy the rich and bold flavor of our premium coffee, made from the finest beans.", "image": "assets/images/cup.jpg" },
+    { "id": 2, "name": "Tea", "price": "$10.00", "description": "Savor the soothing aroma and delicate taste of our high-quality tea leaves.", "image": "assets/images/cup.jpg" }
+  ]
+}

@@ -1,0 +1,45 @@
+<!--
+<div class="one">
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" />
+        <mat-error
+          *ngIf="
+            contactForm.get('email').invalid && contactForm.get('email').touched
+          "
+        >
+          Please enter a valid email.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Message</mat-label>
+        <textarea matInput formControlName="message"></textarea>
+        <mat-error
+          *ngIf="
+            contactForm.get('message').invalid &&
+            contactForm.get('message').touched
+          "
+        >
+          Message is required.
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="contactForm.invalid"
+      >
+        Send Message
+         <div class="card flex justify-content-center">
+        <p-toast />
+        <p-button pRipple   label="Show" />
+    </div> -->
+      <!-- </button>
+    </form>
+  </div>
+</div> -->
