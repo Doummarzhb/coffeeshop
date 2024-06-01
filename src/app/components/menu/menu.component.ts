@@ -189,6 +189,21 @@ import { FormsModule } from '@angular/forms';
         </mat-card>
       </li>
     </ul>
+    <h2>Cart Items</h2>
+<ul>
+  <li *ngFor="let cartItem of cartItems">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ cartItem.name }}</mat-card-title>
+        <mat-card-subtitle>{{ cartItem.price }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="cartItem.image" alt="{{ cartItem.name }}" />
+      <mat-card-content>
+        <p>{{ cartItem.description }}</p>
+      </mat-card-content>
+    </mat-card>
+  </li>
+</ul>
   `,
   styleUrls: ['./menu.component.css'],
 })
@@ -199,11 +214,11 @@ export class MenuComponent implements OnInit {
   showAddMenuItemForm = false;
   newItem = { name: '', price: '', description: '', image: '' };
   items: any[] = [];
+  cartItems: any[] | undefined;
   // router: any;
 
   constructor(private auth_data_service: AuthDataService) {
-    // const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
-    // this.userRole = userData.role || '';
+   
   }
   ngOnInit() {
     const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
@@ -219,20 +234,14 @@ export class MenuComponent implements OnInit {
       this.newItem = { name: '', price: '', description: '', image: '' };
       this.showAddMenuItemForm = false;
       this.loadMenuItems(); //mnchn new item w ybayno edema save
+
     } else {
       console.log('Only admins can add new items.');
     }
   }
   addToCart(item: any) {
-    // if (this.userRole === 'user') {
-    //   let cartItems = JSON.parse(localStorage.getItem('cart_items') || '[]');
-    //   cartItems.push(item);
-    //   localStorage.setItem('cart_items', JSON.stringify(cartItems));
-    //   alert('Item added to cart successfully!');
-    // } else {
-    //   alert('Only users can add items to the cart!');
-    // }
     this.auth_data_service.addToCart(item);
+    this.loadCartItems();
   }
 
   //la yhafez new item
@@ -248,11 +257,10 @@ export class MenuComponent implements OnInit {
       });
     }
   }
-  // sendRequest() {
-  //   if (this.userRole === 'user') {
-  //     alert("Request sent successfully!");
-  //   } else {
-  //     alert("Only users can send requests!");
-  //   }
-  // }
+
+  loadCartItems() {
+    this.auth_data_service.getCartItems().subscribe((cartItems) => {
+      this.cartItems = cartItems;
+    });
+  }
 }

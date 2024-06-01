@@ -108,26 +108,11 @@ export class AuthDataService {
     alert('Item added to cart successfully!');
   }
 
-  // addItem(item: any): Observable<any> {
-  //   return this.http.post<any>(`${this.apiUrl}`, item, this.httpOptions).pipe(
-  //     catchError(error => {
-  //       console.error('Add item error:', error);
-  //       return of({ error: 'Add item failed' });
-  //     })
-  //   );
-  // }
 
-  // addItem(item: any): Observable<any> {
-  //   if (this.getRole() !== 'admin') {
-  //     return of({ error: 'Permission denied: Only admins can add items' });
-  //   }
-  //   return this.http.post<any>(`${this.apiUrl}`, item, this.httpOptions).pipe(
-  //     catchError(error => {
-  //       console.error('Add item error:', error);
-  //       return of({ error: 'Add item failed' });
-  //     })
-  //   );
-  // }
+  getCartItems(): Observable<any[]> {
+    const cartItems = JSON.parse(localStorage.getItem('cart_items') || '[]');
+    return of(cartItems);
+  }
 
   getMenuItems(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/items`).pipe(
@@ -137,11 +122,5 @@ export class AuthDataService {
       })
     );
   } //hayde mnchn yhafz ben le tnn
-  // loggedIn() {
-  //   return !!localStorage.getItem('token')
-  // }
-  // logoutUser() {
-  //   localStorage.removeItem('token')
-  //   this.router.navigate(['/home'])
-  // }
+
 }
