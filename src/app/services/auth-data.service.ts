@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthDataService {
-  addItem(newItem: { // private apiUrl = 'http://localhost:3000/items'; //hayda api khla2to
-    name: string; //localhost:3000/items'; //hayda api khla2to
-    price: number; description: string; image: string;
-  }) {
-    throw new Error('Method not implemented.');
-  }
+
+  // deleteUser(userId: string) {
+  //   throw new Error('Method not implemented.');
+  // }
+
+  // addItem(newItem: { // private apiUrl = 'http://localhost:3000/items'; //hayda api khla2to
+  //   name: string; //localhost:3000/items'; //hayda api khla2to
+  //   price: number; description: string; image: string;
+  // }) {
+  //   throw new Error('Method not implemented.');
+  // }
   private admins = [
     { username: 'admin', email: 'admin@example.com', password: 'admin123' },
   ];
   username = '';
   email = '';
   password = '';
-  private apiUrl = 'http://localhost:3000/items';
+  private apiUrl = 'http://localhost:3000/users';
   // private users = [
   //   { username: '', email: '', password: '' }
   // ];
@@ -92,6 +97,7 @@ export class AuthDataService {
     }
   }
 
+
   getRole(): string | null {
     const userData = localStorage.getItem('user_data');
     return userData ? JSON.parse(userData).role : null;
@@ -122,5 +128,59 @@ export class AuthDataService {
       })
     );
   } //hayde mnchn yhafz ben le tnn
+  deleteUsers(userId: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${userId}`, this.httpOptions).pipe(
+      tap(() => {
+        this.users = this.users.filter((user) => user.id !== userId);
+      }),
+      catchError((error) => {
+        console.error('Delete user error:', error);
+        return of({ error: 'delete failed' });
+      })
+    );
+  }
+
+
+//   getUserss(): Observable<any[]> {
+//     return this.http.get<any[]>(`${this.apiUrl}/users`).pipe(
+//       tap((users) => {
+//         this.users = users;
+//       }),
+//       catchError((error) => {
+//         console.error('Get users error:', error);
+//         return of([]);
+//       })
+//     );
+//   }
+// }
+getUsers(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/users`).pipe(
+    tap((user) => {
+      this.users = user;
+    }),
+    catchError((error) => {
+      console.error('Get users error:', error);
+      return of([]);
+    })
+  );
+}
+deleteUser(userId: string): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/${userId}`, this.httpOptions).pipe(
+    tap(() => {
+      this.users = this.users.filter((user) => user.id !== userId);
+    }),
+    catchError((error) => {
+      console.error('Delete user error:', error);
+      return of({ error: 'delete failed' });
+    })
+  );
+}
+}
+export interface User {
+username: any;
+  id: string;
+  name: string;
+  email: string;
+  isAdmin: boolean;
 
 }

@@ -14,13 +14,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { NavComponent } from './nav/nav.component';
-
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+// import { UserService } from './manage-users/services/user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     // AdminMenuComponent,
-    ContactComponent
+    ContactComponent,
+    ManageUsersComponent
 
 
 
@@ -42,7 +44,8 @@ import { NavComponent } from './nav/nav.component';
   providers: [
     {
       provide: LocationStrategy,
-      useClass: PathLocationStrategy
+      useClass: PathLocationStrategy,
+
     },
     provideAnimationsAsync()
   ],

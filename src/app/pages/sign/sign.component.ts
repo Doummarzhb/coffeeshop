@@ -87,38 +87,38 @@ export class SignComponent {
 
   constructor(private router: Router, private auth_data_service: AuthDataService) { }
 
-  // onclick(username: string, email: string, password: string): void {
-  //   this.auth_data_service.onclick(username, email, password).subscribe({
-  //     next: (response: any) => {
-  //       if (response.error) {
-  //         console.error('Login error:', response.error);
-  //         return;
-  //       }
-  //       this.is_logged_in = true;
-  //       this.userRole = response.isAdmin ? 'admin' : 'user';
-  //       this.router.navigate([this.userRole === 'admin' ? '/home' : '/home']);
-  //     },
-  //     error: (error: any) => {
-  //       console.error('Login error:', error);
-  //     }
-  //   });
-  // }
-
-  onclick(_username: string, _email: string, _password: string) {
-    this.auth_data_service.onclick(this.username, this.email, this.password,)
-      .subscribe(response => {
-        if (response.success) {
-          localStorage.setItem('user_data', JSON.stringify({ role: this.userRole }));
-          if (this.userRole === '') {
-            this.router.navigate(['/home']);
-          } else if (this.userRole === 'admin') {
-            this.router.navigate(['/home']);
-          }
-        } else {
-          console.error('Signup failed:', response.error);
+  onclick(username: string, email: string, password: string): void {
+    this.auth_data_service.onclick(username, email, password).subscribe({
+      next: (response: any) => {
+        if (response.error) {
+          console.error('Login error:', response.error);
+          return;
         }
-      });
+        this.is_logged_in = true;
+        this.userRole = response.isAdmin ? 'admin' : 'user';
+        this.router.navigate([this.userRole === 'admin' ? '/home' : '/home']);
+      },
+      error: (error: any) => {
+        console.error('Login error:', error);
+      }
+    });
   }
+
+  // onclick(_username: string, _email: string, _password: string) {
+  //   this.auth_data_service.onclick(this.username, this.email, this.password,)
+  //     .subscribe(response => {
+  //       if (response.success) {
+  //         localStorage.setItem('user_data', JSON.stringify({ role: this.userRole }));
+  //         if (this.userRole === '') {
+  //           this.router.navigate(['/home']);
+  //         } else if (this.userRole === 'admin') {
+  //           this.router.navigate(['/home']);
+  //         }
+  //       } else {
+  //         console.error('Signup failed:', response.error);
+  //       }
+  //     });
+  // }
 
 }
 

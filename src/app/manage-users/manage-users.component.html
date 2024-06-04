@@ -1,0 +1,25 @@
+<div *ngIf="userRole === 'admin'" class="admin-container">
+  <h2>Admin Page</h2>
+  <p>Welcome, admin! You have full access to the system.</p>
+
+  <h2>Manage Users</h2>
+  <table *ngIf="users$ | async as users">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <button *ngIf="user.id !== currentUser?.id" (click)="deleteUser(user.id)"> delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

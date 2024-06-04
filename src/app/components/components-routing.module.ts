@@ -6,6 +6,7 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import { SignComponent } from '../pages/sign/sign.component';
+import { ManageUsersComponent } from '../manage-users/manage-users.component';
 // import { SignComponent } from '../pages/sign/sign.component';
 
 const routes: Routes = [
@@ -14,6 +15,8 @@ const routes: Routes = [
   { path: 'footer', component: FooterComponent},
   { path: 'menu', component: MenuComponent},
   {path:'sign',component:SignComponent},
+  { path: 'manage-users', component: ManageUsersComponent },
+
 
   { path: 'contact', component: ContactComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'},

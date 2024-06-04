@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class NavComponent {
   router: any;
+  // userRole: string = '';
   // logout(){
 
   // }
