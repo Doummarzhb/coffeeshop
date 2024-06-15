@@ -1,0 +1,36 @@
+<!-- <div *ngFor="let reservation of reservations">
+  <p>Name: {{ reservation.name }}</p>
+  <p>Date: {{ reservation.date }}</p>
+  <p>Time: {{ reservation.time }}</p>
+  <hr>
+</div> -->
+<!-- manage-reservations.component.html -->
+<!-- <label for="item">Select Item:</label>
+<select id="item" [(ngModel)]="selectedItem" name="item" (change)="onItemSelect(selectedItem)">
+  <option *ngFor="let item of items" [ngValue]="item">{{ item.name }}</option>
+</select> -->
+
+<!-- Display selected item -->
+
+
+
+<table class="reservations-table">
+  <thead>
+    <tr>
+      <th>item</th>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reservation of reservations">
+      <td>{{ getSelectedItemName(reservation.itemId) }}</td>
+
+      <td>{{ reservation.name }}</td>
+      <td>{{ reservation.date }}</td>
+      <td>{{ reservation.time }}</td>
+      <td> <button (click)="deleteReservation(reservation.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>

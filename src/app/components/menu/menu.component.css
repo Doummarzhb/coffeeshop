@@ -155,3 +155,9 @@ p {
   margin: 10px 0;
   text-align: center;
 }
+
+.form-control {
+  border-radius: 3px;
+  width: 98%;
+  margin-left: 2px;
+}

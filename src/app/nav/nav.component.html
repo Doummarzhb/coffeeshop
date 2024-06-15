@@ -1,23 +1,15 @@
 <nav class="navbar">
   <div class="container">
-    <a class="logo" href="#">ZZZZ<span>.</span></a>
+    <a class="logo" href="#">_CoffeShop_<span>.</span></a>
     <div class="navbar-nav">
       <a class="nav-link" routerLink="/home" routerLinkActive="active-link"><span class="pi pi-home"> Home</span></a>
       <a class="nav-link" routerLink="/menu"  fragment="menu-section" routerLinkActive="active-link"  ><span class="pi pi-face-smile"> Menu</span></a>
-      <a class="nav-link" routerLink="/product" routerLinkActive="active-link"><span class="pi pi-barcode"> Product</span></a>
-      <a class="nav-link" routerLink="/about" routerLinkActive="active-link"><span class="pi pi-eye"> About</span></a>
-      <a class="nav-link" routerLink="/contact" routerLinkActive="active-link"><span class="pi  pi-address-book"> Contact</span></a>
+   <a class="nav-link" routerLink="/reservation" routerLinkActive="active-link"  *ngIf="userRole !== 'admin'"><span class="pi pi-eye"> reservation</span></a>
+      <a class="nav-link" routerLink="/contact" routerLinkActive="active-link" *ngIf="userRole !== 'admin'"><span class="pi  pi-address-book"> Contact</span></a>
+      <a class="nav-link" routerLink="/feedback" routerLinkActive="active-link" *ngIf="userRole === 'admin'"><span class="pi  pi-address-book"> feedback</span></a>
       <a class="nav-link" routerLink="../sign" routerLinkActive="active-link"><span class="pi pi-user">SignUp</span></a>
-      <a class="nav-link" routerLink="/manage-users" routerLinkActive="active-link"><span class="pi pi-user">Manage Users</span></a>
-
-      <!-- <a class="nav-link"  (click)="logout()"><span class="pi pi-sign-out">Logout</span></a> -->
-      <a class="nav-link" routerLink="" routerLinkActive="active-link"><span class="pi pi-shopping-cart"></span></a>
-
-
-
-          <!-- <a routerLink="/manage-users">Manage Users </a> -->
-
-
+      <a class="nav-link" routerLink="/manage-reservations" routerLinkActive="active-link" *ngIf="userRole === 'admin'"><span class="pi pi-user">Manage Users</span></a>
+      <a class="nav-link" routerLink="/cartadmin"  *ngIf="userRole === 'admin'" routerLinkActive="active-link"><span class="pi pi-shopping-cart"></span></a>
     </div>
   </div>
 </nav>

@@ -1,0 +1,25 @@
+<div class="card">
+  <p-messages [(value)]="messages" [enableService]="true" color="secondary"></p-messages>
+</div>
+<div class="reservation-container">
+  <h2>Reservation for item </h2>
+  <form (submit)="submitReservation()">
+    <label for="item">Select Item</label>
+    <select id="item" [(ngModel)]="selectedItem" name="item" (change)="onItemSelect(selectedItem)">
+      <option *ngFor="let item of items" [ngValue]="item">{{ item.name }}</option>
+    </select>
+
+    <label for="name">Name</label>
+    <input type="text" id="name" [(ngModel)]="reservation.name" name="name" required>
+
+    <label for="date">Date  </label>
+    <input type="date" id="date" [(ngModel)]="reservation.date" name="date" required>
+
+    <label for="time">Time </label>
+    <input type="time" id="time" [(ngModel)]="reservation.time" name="time" required>
+
+    <button type="submit">Send hajez</button>
+    <!-- <p-messages [(value)]="messages" [enableService]="false" /> -->
+  </form>
+</div>
+

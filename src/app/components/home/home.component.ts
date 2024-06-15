@@ -4,7 +4,9 @@ import { AboutComponent } from '../about/about.component';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { MenuComponent } from '../menu/menu.component';
-import { SignComponent } from '../../pages/sign/sign.component';
+// import { SignComponent } from '../../pages/sign/sign.component';
+
+
 
 @Component({
   selector: 'app-home',

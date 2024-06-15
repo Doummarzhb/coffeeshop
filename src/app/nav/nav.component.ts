@@ -12,6 +12,12 @@ import { CommonModule } from '@angular/common';
 })
 export class NavComponent {
   router: any;
+  userRole: string = '';
+
+  ngOnInit() {
+    const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
+    this.userRole = userData.role;
+  }
   // userRole: string = '';
   // logout(){
 

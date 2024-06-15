@@ -1,10 +1,11 @@
 .about-us-container {
-  background-image: url("https://images.pexels.com/photos/8485315/pexels-photo-8485315.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+  /* background-image: url("https://www.codingnepalweb.com/demos/create-responsive-coffee-website-html-css/hero-bg.jpg"); */
    padding: 2rem;
    /* width: 50; */
    height: 85vh;
    font-family: 'Helvetica Neue', Arial, sans-serif;
    color: #f5f5f5;
+   background-color: #000000;
  }
 
  .about-us-content {

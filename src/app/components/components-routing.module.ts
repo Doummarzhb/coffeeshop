@@ -6,7 +6,14 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import { SignComponent } from '../pages/sign/sign.component';
-import { ManageUsersComponent } from '../manage-users/manage-users.component';
+import { ReservationComponent } from '../reservation/reservation.component';
+import { ManageReservationsComponent } from '../manage-reservations/manage-reservations.component';
+import { FeedbackComponent } from '../pages/feedback/feedback.component';
+import { CartadminComponent } from '../pages/cartadmin/cartadmin.component';
+
+
+
+
 // import { SignComponent } from '../pages/sign/sign.component';
 
 const routes: Routes = [
@@ -15,7 +22,13 @@ const routes: Routes = [
   { path: 'footer', component: FooterComponent},
   { path: 'menu', component: MenuComponent},
   {path:'sign',component:SignComponent},
-  { path: 'manage-users', component: ManageUsersComponent },
+
+  { path: 'reservation', component: ReservationComponent },
+  { path: 'manage-reservations', component: ManageReservationsComponent },
+  { path: 'feedback', component: FeedbackComponent },
+  { path: 'cartadmin', component: CartadminComponent },
+
+
 
 
   { path: 'contact', component: ContactComponent},

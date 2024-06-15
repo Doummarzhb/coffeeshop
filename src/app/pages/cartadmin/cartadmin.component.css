@@ -1,0 +1,63 @@
+
+h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
+}
+
+
+.p-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.p-col-12.p-md-6 {
+  padding: 10px;
+}
+
+
+p-card {
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-content h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #555;
+}
+
+.p-card-body p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.empty-message {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  margin-top: 20px;
+}
+.button{
+
+font-style: normal;
+background-color: #8b4513;
+padding: 10px;
+color: #ddd;
+}
+ 

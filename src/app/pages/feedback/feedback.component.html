@@ -1,0 +1,19 @@
+<div class="feedback-container">
+  <h2>Feedback</h2>
+  <table class="feedback-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feedback of feedbackList">
+        <td>{{ feedback.name }}</td>
+        <td>{{ feedback.email }}</td>
+        <td>{{ feedback.message }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -9,17 +9,25 @@ import { FooterComponent } from './footer/footer.component';
 import { ComponentsRoutingModule } from './components-routing.module';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MatCardActions, MatCardModule } from '@angular/material/card';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 // import { SignComponent } from '../pages/sign/sign.component';
 // import { ContactComponent } from './contact/contact.component';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+
+import { FormGroup } from '@mui/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ManageReservationsComponent } from '../manage-reservations/manage-reservations.component';
+import { MatDialog } from '@angular/material/dialog';
+
+
+
 // import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 
 
@@ -39,6 +47,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
+    ReactiveFormsModule,
+    MatMenuModule,
+    FormsModule,
+    // ButtonModule,
+    // ToastModule
+
+
+
+
+
+
+
 
 
     // SignComponent
@@ -50,7 +70,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     FooterComponent,
 
 
+
     // SignComponent
+
+  ],
+  declarations: [
+    ManageReservationsComponent,
+
+    // ManageReservationsComponent
 
   ],
 
