@@ -31,11 +31,12 @@ export class LoginComponent {
         }
         this.is_logged_in = true;
         this.userRole = response.isAdmin ? 'admin' : 'user';
-        this.router.navigate([this.userRole === 'admin' ? '/admin-dashboard' : '/user-dashboard']);
+        this.router.navigate([this.userRole === 'admin' ? '/home' : '/home']);
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login successful!' });
       },
       error: (error: any) => {
         console.error('Login error:', error);
+        this.router.navigate(['/home']);
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Login failed!' });
       }
     });

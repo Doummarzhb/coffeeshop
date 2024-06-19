@@ -323,10 +323,47 @@ export class AuthDataService {
     this.purchasesSubject.next(updatedPurchases);
     localStorage.setItem('purchases', JSON.stringify(updatedPurchases));
   }
+  // login(username: string, password: string): Observable<any> {
+  //   return this.http.post<any>(`${this.apiUrl}/login`, { username, password });
+  // }
   login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, { username, password });
+    const admin =
+      username === 'admin' &&
+      password === 'admin123';
+
+    // Check if user is admin
+    if (admin) {
+      this.currentUser = { username, role: 'admin' };
+      this.isAdmin = true;
+      localStorage.setItem('auth_token', 'fake-token');
+      localStorage.setItem('user_data', JSON.stringify(this.currentUser));
+
+      return of({
+        isAdmin: true,
+        data: { token: 'fake-token', userData: this.currentUser },
+      });
+    } else {
+      // Here you can replace this part with actual server-side login logic
+      // Mock user login check
+      const user = username === 'user' && password === 'user123';
+
+      if (!admin) {
+        this.currentUser = !admin;
+        this.isAdmin = false;
+        localStorage.setItem('auth_token', 'fake-token');
+        localStorage.setItem('user_data', JSON.stringify(this.currentUser));
+        localStorage.setItem('username', username);
+        return of({
+          isAdmin: false,
+          data: { token: 'fake-token', userData: this.currentUser },
+        });
+      } else {
+        return of({ error: 'Invalid username or password' });
+      }
+    }
   }
 }
+
 export interface User {
   username: any;
   id: string;
