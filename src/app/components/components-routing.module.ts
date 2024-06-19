@@ -23,12 +23,14 @@ const routes: Routes = [
   { path: 'footer', component: FooterComponent},
   { path: 'menu', component: MenuComponent},
   {path:'sign',component:SignComponent},
+  {path:'login',component:LoginComponent},
+
 
   { path: 'reservation', component: ReservationComponent },
   { path: 'manage-reservations', component: ManageReservationsComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'cartadmin', component: CartadminComponent },
-  { path: 'Login', component: LoginComponent },
+
 
 
 

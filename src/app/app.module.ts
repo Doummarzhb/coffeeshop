@@ -42,7 +42,7 @@ import { LoginComponent } from './pages/login/login.component';
     SignComponent,
     FeedbackComponent,
     CartadminComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
