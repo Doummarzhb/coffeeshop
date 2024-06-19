@@ -17,7 +17,7 @@ export class AuthDataService {
   password = '';
 
 
-
+  //if we have backend this is the api for it
   private purchaseInfo = new BehaviorSubject<any[]>([]);
   private apiUrl = 'http://localhost:3000/users';
   // private users = [
@@ -39,7 +39,7 @@ export class AuthDataService {
   constructor(private http: HttpClient) {
 
   }
-
+  //sign up button
   onclick(username: string, email: string, password: string): Observable<any> {
     const admin =
       username === 'admin' &&
@@ -214,7 +214,7 @@ export class AuthDataService {
   // private reservations: any[] = [];
 
 
-  
+
 
   deleteReservation(reservationId: number): Observable<void> {
     this.reservations = this.reservations.filter(r => r.id !== reservationId);

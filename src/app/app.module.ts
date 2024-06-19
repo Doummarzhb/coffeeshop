@@ -4,7 +4,7 @@ import { FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angula
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
- import { AppRoutingModule } from './app.routes';
+import { AppRoutingModule } from './app.routes';
 import { ComponentModule } from './components/component.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SignComponent } from './pages/sign/sign.component';
@@ -40,7 +40,7 @@ import { ToastModule } from 'primeng/toast';
     // ManageReservationsComponent
     SignComponent,
     FeedbackComponent,
-   CartadminComponent
+    CartadminComponent
   ],
   imports: [
     BrowserModule,
@@ -51,14 +51,14 @@ import { ToastModule } from 'primeng/toast';
     CommonModule,
     ComponentModule,
     AppRoutingModule,
-    MatIconModule,MatInputModule,MatFormFieldModule,
+    MatIconModule, MatInputModule, MatFormFieldModule,
     NavComponent,
-   MatCardModule,
-   MatMenuModule,
-   MatToolbarModule,
-   NgxSpinnerModule,
-   MatDialogModule,
-   MessagesModule,
+    MatCardModule,
+    MatMenuModule,
+    MatToolbarModule,
+    NgxSpinnerModule,
+    MatDialogModule,
+    MessagesModule,
     ButtonModule,
     ToastModule,
 

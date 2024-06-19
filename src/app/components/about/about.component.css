@@ -1,81 +1,81 @@
 .about-us-container {
   /* background-image: url("https://www.codingnepalweb.com/demos/create-responsive-coffee-website-html-css/hero-bg.jpg"); */
-   padding: 2rem;
-   /* width: 50; */
-   height: 85vh;
-   font-family: 'Helvetica Neue', Arial, sans-serif;
-   color: #f5f5f5;
-   background-color: #000000;
- }
+  padding: 2rem;
+  /* width: 50; */
+  height: 85vh;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #f5f5f5;
+  background-color: #000000;
+}
 
- .about-us-content {
-   max-width: 800px;
-   margin: 0 auto;
-   background-color: rgba(255, 255, 255, 0.9);
-   color: #333333;
-   padding: 2rem;
-   border-radius: 10px;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   border: 1px solid #ddd;
-   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
- }
+.about-us-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333333;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
 
- .about-us-content:hover {
-   transform: scale(1.02);
-   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
- }
+.about-us-content:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
 
- .title {
-   text-align: center;
-   font-size: 2.5rem;
-   color: #8b4513;
-   /* margin-bottom: 1rem; */
- }
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #8b4513;
+  /* margin-bottom: 1rem; */
+}
 
- .intro {
-   text-align: center;
-   font-size: 1.2rem;
-   margin-bottom: 2rem;
- }
+.intro {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
 
- .shop-name {
-   font-weight: bold;
-   color: #8b4513;
- }
+.shop-name {
+  font-weight: bold;
+  color: #8b4513;
+}
 
- .section {
-   margin-bottom: 2rem;
-   border: 1px solid #ddd;
-   padding: 1rem;
-   border-radius: 8px;
- }
+.section {
+  margin-bottom: 2rem;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+}
 
- .section-title {
-   font-size: 1.8rem;
-   color: #8b4513;
-   margin-bottom: 0.5rem;
- }
+.section-title {
+  font-size: 1.8rem;
+  color: #8b4513;
+  margin-bottom: 0.5rem;
+}
 
- .section-content {
-   font-size: 1rem;
-   line-height: 1.6;
- }
+.section-content {
+  font-size: 1rem;
+  line-height: 1.6;
+}
 
- .highlight {
-   font-weight: bold;
-   color: #000000;
- }
+.highlight {
+  font-weight: bold;
+  color: #000000;
+}
 
- .coffee-image {
-   width: 100%;
-   height: auto;
-   margin: 1rem 0;
-   border-radius: 8px;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
- }
+.coffee-image {
+  width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
 
- .coffee-image:hover {
-   transform: scale(1.05);
-   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
- }
+.coffee-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
