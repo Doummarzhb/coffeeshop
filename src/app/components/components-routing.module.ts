@@ -10,6 +10,7 @@ import { ReservationComponent } from '../reservation/reservation.component';
 import { ManageReservationsComponent } from '../manage-reservations/manage-reservations.component';
 import { FeedbackComponent } from '../pages/feedback/feedback.component';
 import { CartadminComponent } from '../pages/cartadmin/cartadmin.component';
+import { LoginComponent } from '../pages/login/login.component';
 
 
 
@@ -27,6 +28,8 @@ const routes: Routes = [
   { path: 'manage-reservations', component: ManageReservationsComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'cartadmin', component: CartadminComponent },
+  { path: 'Login', component: LoginComponent },
+
 
 
 
