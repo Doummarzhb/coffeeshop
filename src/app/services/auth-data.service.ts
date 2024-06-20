@@ -210,25 +210,13 @@ export class AuthDataService {
     }
     return null;
   }
-  // getCurrentUser(): any {
-  //   if (!this.currentUser) {
-  //     this.currentUser = JSON.parse(localStorage.getItem('user_data') || 'null');
-  //   }
-  //   return this.currentUser;
-  // }
 
-
-  // getCurrentUser(): Observable<any> {
-  //   this.currentUser = JSON.parse(localStorage.getItem('user_data') || 'null');
-  //   return this.currentUserSubject.asObservable();
-  // }
   getCurrentUser(): any {
     const userData = localStorage.getItem('user_data');
     return userData ? JSON.parse(userData) : null;
   }
 
-  //lal reservation
-  // private reservations: any[] = [];
+
 
 
 
@@ -277,29 +265,7 @@ export class AuthDataService {
 
     return of({ success: true, purchase });
   }
-  // buyNow(item: any): Observable<any> {
-  //   this.getCurrentUser().subscribe(currentUser => {
-  //     if (!currentUser) {
-  //       console.error('No user is currently logged in.');
-  //       return of({ success: false, message: 'No user is currently logged in.' });
-  //     }
 
-  //     const purchase = {
-  //       username: currentUser.username,
-  //       name: item.name,
-  //       description: item.description,
-  //       price: item.price,
-  //       id: new Date().getTime()
-  //     };
-
-  //     const currentPurchases = JSON.parse(localStorage.getItem('purchases') || '[]');
-  //     currentPurchases.push(purchase);
-  //     localStorage.setItem('purchases', JSON.stringify(currentPurchases));
-
-  //     return of({ success: true, purchase });
-  //   });
-  //   return of({ success: false, message: 'Processing purchase.' });
-  // }
 
 
 
@@ -345,45 +311,7 @@ export class AuthDataService {
     localStorage.setItem('purchases', JSON.stringify(updatedPurchases));
     return of();
   }
-//   login(username: string, password: string): Observable<any> {
-//     const admin =
-//       username === 'admin' &&
-//       password === 'admin123';
 
-//     // Check if user is admin
-//     if (admin) {
-//       this.currentUser = { username, role: 'admin' };
-//       this.isAdmin = true;
-//       this.saveUserToLocalStorage(this.currentUser, 'fake-token');
-//       localStorage.setItem('auth_token', 'fake-token');
-//       localStorage.setItem('user_data', JSON.stringify(this.currentUser));
-
-//       return of({
-//         isAdmin: true,
-//         data: { token: 'fake-token', userData: this.currentUser },
-//       });
-//     } else {
-
-
-//       if (!admin) {
-//         this.currentUser = !admin;
-//         this.isAdmin = false;
-//         this.saveUserToLocalStorage(this.currentUser, 'fake-token');
-//         localStorage.setItem('auth_token', 'fake-token');
-//         localStorage.setItem('user_data', JSON.stringify(this.currentUser));
-//         localStorage.setItem('username', username);
-//         localStorage.setItem('email', this.email);
-
-//         return of({
-//           isAdmin: false,
-//           data: { token: 'fake-token', userData: this.currentUser },
-//         });
-//       } else {
-//         return of({ error: 'Invalid username or password' });
-//       }
-//     }
-//   }
-// }
 login(username: string, password: string): Observable<any> {
   const isAdmin = username === 'admin' && password === 'admin123';
 
