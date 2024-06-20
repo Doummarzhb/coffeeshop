@@ -267,44 +267,74 @@ export class AuthDataService {
     localStorage.setItem('purchases', JSON.stringify(updatedPurchases));
     return of();
   }
-  login(username: string, password: string): Observable<any> {
-    const admin =
-      username === 'admin' &&
-      password === 'admin123';
+//   login(username: string, password: string): Observable<any> {
+//     const admin =
+//       username === 'admin' &&
+//       password === 'admin123';
 
-    // Check if user is admin
-    if (admin) {
-      this.currentUser = { username, role: 'admin' };
-      this.isAdmin = true;
-      this.saveUserToLocalStorage(this.currentUser, 'fake-token');
-      localStorage.setItem('auth_token', 'fake-token');
-      localStorage.setItem('user_data', JSON.stringify(this.currentUser));
+//     // Check if user is admin
+//     if (admin) {
+//       this.currentUser = { username, role: 'admin' };
+//       this.isAdmin = true;
+//       this.saveUserToLocalStorage(this.currentUser, 'fake-token');
+//       localStorage.setItem('auth_token', 'fake-token');
+//       localStorage.setItem('user_data', JSON.stringify(this.currentUser));
 
-      return of({
-        isAdmin: true,
-        data: { token: 'fake-token', userData: this.currentUser },
-      });
-    } else {
+//       return of({
+//         isAdmin: true,
+//         data: { token: 'fake-token', userData: this.currentUser },
+//       });
+//     } else {
 
 
-      if (!admin) {
-        this.currentUser = !admin;
+//       if (!admin) {
+//         this.currentUser = !admin;
+//         this.isAdmin = false;
+//         this.saveUserToLocalStorage(this.currentUser, 'fake-token');
+//         localStorage.setItem('auth_token', 'fake-token');
+//         localStorage.setItem('user_data', JSON.stringify(this.currentUser));
+//         localStorage.setItem('username', username);
+//         localStorage.setItem('email', this.email);
+
+//         return of({
+//           isAdmin: false,
+//           data: { token: 'fake-token', userData: this.currentUser },
+//         });
+//       } else {
+//         return of({ error: 'Invalid username or password' });
+//       }
+//     }
+//   }
+// }
+login(username: string, password: string): Observable<any> {
+  // Example: Check if admin credentials (replace with actual admin check logic)
+  const isAdmin = username === 'admin' && password === 'admin123';
+
+  if (isAdmin) {
+    this.currentUser = { username, role: 'admin' };
+    this.isAdmin = true;
+    localStorage.setItem('auth_token', 'fake-token');
+    localStorage.setItem('user_data', JSON.stringify(this.currentUser));
+
+    return of({
+      isAdmin: true,
+      data: { token: 'fake-token', userData: this.currentUser },
+    });
+  } else {
+    return this.http.post<any>('/api/login', { username, password }).pipe(
+      tap((response) => {
+        this.currentUser = response.data.userData;
         this.isAdmin = false;
-        this.saveUserToLocalStorage(this.currentUser, 'fake-token');
-        localStorage.setItem('auth_token', 'fake-token');
+        localStorage.setItem('auth_token', response.data.token);
         localStorage.setItem('user_data', JSON.stringify(this.currentUser));
-        localStorage.setItem('username', username);
-        localStorage.setItem('email', this.email);
-
-        return of({
-          isAdmin: false,
-          data: { token: 'fake-token', userData: this.currentUser },
-        });
-      } else {
+      }),
+      catchError((error) => {
+        console.error('Login error:', error);
         return of({ error: 'Invalid username or password' });
-      }
-    }
+      })
+    );
   }
+}
 }
 
 export interface User {
