@@ -7,7 +7,13 @@ import { MatDialog } from '@angular/material/dialog';
   providedIn: 'root',
 })
 export class AuthDataService {
-  private purchasesSubject = new BehaviorSubject<any[]>(this.getStoredPurchases());
+  // private purchasesSubject = new BehaviorSubject<any[]>(this.getStoredPurchases());
+
+
+  private currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+
+
+  private purchaseInfoSubject = new BehaviorSubject<any[]>(JSON.parse(localStorage.getItem('purchases') || '[]'));
 
 
   private reservations: any[] = JSON.parse(localStorage.getItem('reservations') || '[]');
@@ -67,6 +73,7 @@ export class AuthDataService {
         // this.user = { ...user, role: 'user' };
         this.currentUser = !admin;
         this.isAdmin = false;
+        this.saveUserToLocalStorage(this.currentUser, 'fake-token');
         localStorage.setItem('auth_token', 'fake-token');
         localStorage.setItem('user_data', JSON.stringify(this.currentUser));
         localStorage.setItem('username', username);
@@ -87,6 +94,8 @@ export class AuthDataService {
                 JSON.stringify(this.currentUser)
               );
               localStorage.setItem('username', username);
+        this.saveUserToLocalStorage(this.currentUser, 'fake-token');
+
             }),
             catchError((error) => {
               console.error('sign error:', error);
@@ -95,6 +104,14 @@ export class AuthDataService {
           );
       }
     }
+  }
+  private saveUserToLocalStorage(user: any, token: string): void {
+    localStorage.setItem('auth_token', token);
+    localStorage.setItem('user_data', JSON.stringify(user));
+    localStorage.setItem('username', user.username);
+    // localStorage.setItem('email', user.email);
+    localStorage.setItem('auth_token', 'fake-token');
+
   }
 
   getRole(): string | null {
@@ -136,10 +153,181 @@ export class AuthDataService {
         return of([]);
       })
     );
+  }
+  getUsername(): string | null {
+    const userData = localStorage.getItem('user_data');
+    if (userData) {
+      const parsedUserData = JSON.parse(userData);
+      return parsedUserData.username;
+    }
+    return null;
+  }
+  // getCurrentUser(): any {
+  //   if (!this.currentUser) {
+  //     this.currentUser = JSON.parse(localStorage.getItem('user_data') || 'null');
+  //   }
+  //   return this.currentUser;
+  // }
+  getCurrentUser(): Observable<any> {
+    this.currentUser = JSON.parse(localStorage.getItem('user_data') || 'null');
+    return this.currentUserSubject.asObservable();
+  }
+
+  //lal reservation
+  // private reservations: any[] = [];
 
 
 
-    // } //hayde mnchn yhafz ben le tnn
+
+  deleteReservation(reservationId: number): Observable<void> {
+    this.reservations = this.reservations.filter(r => r.id !== reservationId);
+    localStorage.setItem('reservations', JSON.stringify(this.reservations));
+    return of();
+  }
+
+  submitReservation(reservationData: any): Observable<any> {
+    this.reservations.push(reservationData);
+    localStorage.setItem('reservations', JSON.stringify(this.reservations));
+    return of({ success: true, reservation: reservationData });
+  }
+
+  getReservations(): Observable<any[]> {
+    return of(this.reservations);
+  }
+
+  submitFeedback(feedbackData: any): void {
+    const storedFeedback = localStorage.getItem('feedbackList');
+    const feedbackList = storedFeedback ? JSON.parse(storedFeedback) : [];
+    feedbackList.push(feedbackData);
+    localStorage.setItem('feedbackList', JSON.stringify(feedbackList));
+  }
+
+  getFeedback(): any[] {
+    const storedFeedback = localStorage.getItem('feedbackList');
+    return storedFeedback ? JSON.parse(storedFeedback) : [];
+  }
+
+  buyNow(item: any): Observable<any> {
+    const currentUser = this.getCurrentUser();
+    const purchase = {
+      username: currentUser,
+      name: item.name,
+      description: item.description,
+      price: item.price,
+      id: new Date().getTime()
+    };
+
+    const currentPurchases = JSON.parse(localStorage.getItem('purchases') || '[]');
+    currentPurchases.push(purchase);
+    localStorage.setItem('purchases', JSON.stringify(currentPurchases));
+
+    return of({ success: true, purchase });
+  }
+
+
+
+  getSelectedUserItem(): Observable<any> {
+    return this.http.get<any>('api/user/item');
+  }
+
+  getSelectedAdminItem(): Observable<any> {
+    return this.http.get<any>('api/admin/item');
+  }
+  storePurchase(purchase: any): void {
+    let purchases = JSON.parse(localStorage.getItem('purchases') || '[]');
+    purchases.push(purchase);
+    localStorage.setItem('purchases', JSON.stringify(purchases));
+  }
+
+
+  private getStoredPurchases(): any[] {
+    return JSON.parse(localStorage.getItem('purchases') || '[]');
+  }
+
+
+  // getPurchases(): Observable<any[]> {
+  //   const purchases = JSON.parse(localStorage.getItem('purchases') || '[]');
+  //   return of(purchases);
+  // }
+  getPurchases(): Observable<any[]> {
+    const purchases = JSON.parse(localStorage.getItem('purchases') || '[]');
+    this.purchaseInfoSubject.next(purchases);
+    return this.purchaseInfoSubject.asObservable();
+  }
+
+  // deletePurchase(purchaseId: number): void {
+  //   const updatedPurchases = this.purchasesSubject.value.filter(p => p.id !== purchaseId);
+  //   this.purchasesSubject.next(updatedPurchases);
+  //   localStorage.setItem('purchases', JSON.stringify(updatedPurchases));
+  // }
+  deletePurchase(purchaseId: number): Observable<void> {
+    const currentPurchases = this.purchaseInfoSubject.value;
+    const updatedPurchases = currentPurchases.filter(p => p.id !== purchaseId);
+    this.purchaseInfoSubject.next(updatedPurchases);
+    localStorage.setItem('purchases', JSON.stringify(updatedPurchases));
+    return of();
+  }
+  login(username: string, password: string): Observable<any> {
+    const admin =
+      username === 'admin' &&
+      password === 'admin123';
+
+    // Check if user is admin
+    if (admin) {
+      this.currentUser = { username, role: 'admin' };
+      this.isAdmin = true;
+      this.saveUserToLocalStorage(this.currentUser, 'fake-token');
+      localStorage.setItem('auth_token', 'fake-token');
+      localStorage.setItem('user_data', JSON.stringify(this.currentUser));
+
+      return of({
+        isAdmin: true,
+        data: { token: 'fake-token', userData: this.currentUser },
+      });
+    } else {
+
+
+      if (!admin) {
+        this.currentUser = !admin;
+        this.isAdmin = false;
+        this.saveUserToLocalStorage(this.currentUser, 'fake-token');
+        localStorage.setItem('auth_token', 'fake-token');
+        localStorage.setItem('user_data', JSON.stringify(this.currentUser));
+        localStorage.setItem('username', username);
+        localStorage.setItem('email', this.email);
+
+        return of({
+          isAdmin: false,
+          data: { token: 'fake-token', userData: this.currentUser },
+        });
+      } else {
+        return of({ error: 'Invalid username or password' });
+      }
+    }
+  }
+}
+
+export interface User {
+  username: any;
+  id: string;
+  name: string;
+  email: string;
+  isAdmin: boolean;
+}
+
+// buyNow(item: any): Observable<any> {
+//   const currentUser = this.getCurrentUser();
+//   if (currentUser && this.getRole() !== 'admin') {
+//     const purchase = { ...item, username: currentUser.username, purchaseDate: new Date() };
+//     let cartItems = JSON.parse(localStorage.getItem('cart_items') || '[]');
+//     cartItems.push(purchase);
+//     localStorage.setItem('cart_items', JSON.stringify(cartItems));
+//     return of({ success: true, purchase });
+//   } else {
+//     return of({ success: false, message: 'Admins cannot buy items.' });
+//   }
+// }
+   // } //hayde mnchn yhafz ben le tnn
     // deleteUsers(userId: string): Observable<any> {
     //   return this.http.delete(`${this.apiUrl}/${userId}`, this.httpOptions).pipe(
     //     tap(() => {
@@ -194,193 +382,3 @@ export class AuthDataService {
     //     })
     //   );
     // }
-  }
-  getUsername(): string | null {
-    const userData = localStorage.getItem('user_data');
-    if (userData) {
-      const parsedUserData = JSON.parse(userData);
-      return parsedUserData.username;
-    }
-    return null;
-  }
-  getCurrentUser(): any {
-    if (!this.currentUser) {
-      this.currentUser = JSON.parse(localStorage.getItem('user_data') || 'null');
-    }
-    return this.currentUser;
-  }
-
-  //lal reservation
-  // private reservations: any[] = [];
-
-
-
-
-  deleteReservation(reservationId: number): Observable<void> {
-    this.reservations = this.reservations.filter(r => r.id !== reservationId);
-    localStorage.setItem('reservations', JSON.stringify(this.reservations));
-    return of();
-  }
-
-  submitReservation(reservationData: any): Observable<any> {
-    this.reservations.push(reservationData);
-    localStorage.setItem('reservations', JSON.stringify(this.reservations));
-    return of({ success: true, reservation: reservationData });
-  }
-
-  getReservations(): Observable<any[]> {
-    return of(this.reservations);
-  }
-  // submitFeedback(feedbackData: any): Observable<any> {
-  //   return this.http.post<any>(`${this.apiUrl}/feedback`, feedbackData).pipe(
-  //     catchError(this.handleError<any>('submitFeedback', []))
-  //   );
-  // }
-
-  // getFeedback(): Observable<any[]> {
-  //   return this.http.get<any[]>(`${this.apiUrl}/feedback`).pipe(
-  //     catchError(this.handleError<any[]>('getFeedback', []))
-  //   );
-  // }
-  // private handleError<T>(operation = 'operation', result?: T) {
-  //   return (error: any): Observable<T> => {
-  //     console.error(`${operation} failed: ${error.message}`);
-  //     return of(result as T);
-  //   };
-  // }
-  //for feedback
-  submitFeedback(feedbackData: any): void {
-    const storedFeedback = localStorage.getItem('feedbackList');
-    const feedbackList = storedFeedback ? JSON.parse(storedFeedback) : [];
-    feedbackList.push(feedbackData);
-    localStorage.setItem('feedbackList', JSON.stringify(feedbackList));
-  }
-
-  getFeedback(): any[] {
-    const storedFeedback = localStorage.getItem('feedbackList');
-    return storedFeedback ? JSON.parse(storedFeedback) : [];
-  }
-  buyNow(item: any): Observable<any> {
-    const currentUser = this.currentUser.value;
-    // const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    const purchase = {
-      username: currentUser.username,
-      itemName: item.name,
-      description: item.description,
-      price: item.price,
-      id: new Date().getTime()
-    };
-// this.purchases.push(purchase);
-    const currentPurchases = this.purchaseInfo.value;
-    this.purchaseInfo.next([...currentPurchases, purchase]);
-    localStorage.setItem('purchases', JSON.stringify([...currentPurchases, purchase]));
-    return of({ success: true, purchase });
-  }
-
-
-
-
-  getSelectedUserItem(): Observable<any> {
-    return this.http.get<any>('api/user/item');
-  }
-  // buyNow(item: any): Observable<any> {
-  //   const username = this.getUsername(); // Get the username of the current user
-  //   if (username) {
-  //     // Check if the user is logged in
-  //     const purchase = { ...item, username, purchaseDate: new Date() };
-  //     let cartItems = JSON.parse(localStorage.getItem('cart_items') || '[]');
-  //     cartItems.push(purchase);
-  //     localStorage.setItem('cart_items', JSON.stringify(cartItems));
-  //     // Simulate a successful purchase
-  //     return of({ success: true, purchase });
-  //   } else {
-  //     // If user is not logged in, return an error
-  //     return of({ success: false, message: 'User must be logged in to buy items.' });
-  //   }
-  // }
-  getSelectedAdminItem(): Observable<any> {
-    return this.http.get<any>('api/admin/item');
-  }
-  storePurchase(purchase: any): void {
-    let purchases = JSON.parse(localStorage.getItem('purchases') || '[]');
-    purchases.push(purchase);
-    localStorage.setItem('purchases', JSON.stringify(purchases));
-  }
-
-
-  private getStoredPurchases(): any[] {
-    return JSON.parse(localStorage.getItem('purchases') || '[]');
-  }
-
-
-  getPurchases(): Observable<any[]> {
-    const purchases = JSON.parse(localStorage.getItem('purchases') || '[]');
-    return of(purchases);
-  }
-
-  deletePurchase(purchaseId: number): void {
-    const updatedPurchases = this.purchasesSubject.value.filter(p => p.id !== purchaseId);
-    this.purchasesSubject.next(updatedPurchases);
-    localStorage.setItem('purchases', JSON.stringify(updatedPurchases));
-  }
-  // login(username: string, password: string): Observable<any> {
-  //   return this.http.post<any>(`${this.apiUrl}/login`, { username, password });
-  // }
-  login(username: string, password: string): Observable<any> {
-    const admin =
-      username === 'admin' &&
-      password === 'admin123';
-
-    // Check if user is admin
-    if (admin) {
-      this.currentUser = { username, role: 'admin' };
-      this.isAdmin = true;
-      localStorage.setItem('auth_token', 'fake-token');
-      localStorage.setItem('user_data', JSON.stringify(this.currentUser));
-
-      return of({
-        isAdmin: true,
-        data: { token: 'fake-token', userData: this.currentUser },
-      });
-    } else {
-      // Here you can replace this part with actual server-side login logic
-      // Mock user login check
-      const user = username === 'user' && password === 'user123';
-
-      if (!admin) {
-        this.currentUser = !admin;
-        this.isAdmin = false;
-        localStorage.setItem('auth_token', 'fake-token');
-        localStorage.setItem('user_data', JSON.stringify(this.currentUser));
-        localStorage.setItem('username', username);
-        return of({
-          isAdmin: false,
-          data: { token: 'fake-token', userData: this.currentUser },
-        });
-      } else {
-        return of({ error: 'Invalid username or password' });
-      }
-    }
-  }
-}
-
-export interface User {
-  username: any;
-  id: string;
-  name: string;
-  email: string;
-  isAdmin: boolean;
-}
-
-// buyNow(item: any): Observable<any> {
-//   const currentUser = this.getCurrentUser();
-//   if (currentUser && this.getRole() !== 'admin') {
-//     const purchase = { ...item, username: currentUser.username, purchaseDate: new Date() };
-//     let cartItems = JSON.parse(localStorage.getItem('cart_items') || '[]');
-//     cartItems.push(purchase);
-//     localStorage.setItem('cart_items', JSON.stringify(cartItems));
-//     return of({ success: true, purchase });
-//   } else {
-//     return of({ success: false, message: 'Admins cannot buy items.' });
-//   }
-// }

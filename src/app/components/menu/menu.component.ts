@@ -34,6 +34,7 @@ export class MenuComponent implements OnInit {
   searchTerm: string = '';
   editingIndex: number | null = null;
   editingItem = { name: '', price: '', description: '', image: '' };
+  filteredItems: any[] = this.items;
 
   constructor(
     private auth_data_service: AuthDataService,
@@ -123,4 +124,15 @@ export class MenuComponent implements OnInit {
       }
     });
   }
+
+  applyFilter(): void {
+    if (!this.searchTerm) {
+      this.filteredItems = this.items;
+    } else {
+      this.filteredItems = this.items.filter(item =>
+        item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+  }
+
 }
