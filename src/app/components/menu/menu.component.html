@@ -40,6 +40,9 @@
         <button *ngIf="userRole !== 'admin'" mat-button routerLink="/checkout" color="white" (click)="buyNow(item)">
           BuyNow
         </button>
+        <!-- <button *ngIf="userRole !== 'admin'" mat-button routerLink="/checkout" color="white" (click)="addTotal(item)">
+          addtocard
+        </button> -->
 
         <button *ngIf="userRole === 'admin'" mat-button color="warn" (click)="deleteItem(i)">
           Delete

@@ -347,16 +347,7 @@ login(username: string, password: string): Observable<any> {
   }
 }
 
-// private getStoredUser(username: string, password: string): any {
-//   const storedUserData = localStorage.getItem('user_data');
-//   if (storedUserData) {
-//     const storedUser = JSON.parse(storedUserData);
-//     if (storedUser.username === username && storedUser.password === password) {
-//       return storedUser;
-//     }
-//   }
-//   return null;
-// }
+
 }
 
 export interface User {
