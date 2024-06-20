@@ -46,64 +46,112 @@ export class AuthDataService {
 
   }
   //sign up button
+  // onclick(username: string, email: string, password: string): Observable<any> {
+  //   const admin =
+  //     username === 'admin' &&
+  //     email === 'admin@example.com' &&
+  //     password === 'admin123';
+  //   // const user = this.users.find(
+  //   //   (user) =>
+  //   //     user.username === username &&
+  //   //     user.email === email &&
+  //   //     user.password === password
+  //   // );
+  //   if (admin) {
+  //     this.currentUser = { username, email, role: 'admin' };
+  //     this.isAdmin = true;
+  //     localStorage.setItem('auth_token', 'fake-token');
+  //     localStorage.setItem('user_data', JSON.stringify(this.currentUser));
+
+  //     return of({
+  //       isAdmin: true,
+  //       data: { token: 'fake-token', userData: this.currentUser },
+  //     });
+  //   } else {
+  //     // const user = this.users.find(user => user.username === username && user.email === email && user.password === password);
+  //     if (!admin) {
+  //       // this.user = { ...user, role: 'user' };
+  //       this.currentUser = !admin;
+  //       this.isAdmin = false;
+  //       this.saveUserToLocalStorage(this.currentUser, 'fake-token');
+  //       localStorage.setItem('auth_token', 'fake-token');
+  //       localStorage.setItem('user_data', JSON.stringify(this.currentUser));
+  //       localStorage.setItem('username', username);
+  //       return of({
+  //         isAdmin: false,
+  //         data: { token: 'fake-token', userData: this.currentUser },
+  //       });
+  //     } else {
+  //       return this.http
+  //         .post<any>('/api/sign', { username, email, password })
+  //         .pipe(
+  //           tap((response) => {
+  //             this.currentUser = response.data.userData;
+  //             this.isAdmin = false;
+  //             localStorage.setItem('auth_token', response.data.token);
+  //             localStorage.setItem(
+  //               'user_data',
+  //               JSON.stringify(this.currentUser)
+  //             );
+  //             localStorage.setItem('username', username);
+  //       this.saveUserToLocalStorage(this.currentUser, 'fake-token');
+
+  //           }),
+  //           catchError((error) => {
+  //             console.error('sign error:', error);
+  //             return of({ error: 'sign failed' });
+  //           })
+  //         );
+  //     }
+  //   }
+  // }
   onclick(username: string, email: string, password: string): Observable<any> {
-    const admin =
-      username === 'admin' &&
-      email === 'admin@example.com' &&
-      password === 'admin123';
-    // const user = this.users.find(
-    //   (user) =>
-    //     user.username === username &&
-    //     user.email === email &&
-    //     user.password === password
-    // );
-    if (admin) {
+    const isAdmin = username === 'admin' && email === 'admin@example.com' && password === 'admin123';
+
+    if (isAdmin) {
       this.currentUser = { username, email, role: 'admin' };
       this.isAdmin = true;
+      const token = this.generateAuthToken(username, email);
       localStorage.setItem('auth_token', 'fake-token');
       localStorage.setItem('user_data', JSON.stringify(this.currentUser));
 
       return of({
         isAdmin: true,
-        data: { token: 'fake-token', userData: this.currentUser },
+        data: { token: 'fake-token', userData: this.currentUser }
       });
     } else {
-      // const user = this.users.find(user => user.username === username && user.email === email && user.password === password);
-      if (!admin) {
-        // this.user = { ...user, role: 'user' };
-        this.currentUser = !admin;
+      const storedUsers = JSON.parse(localStorage.getItem('stored_users') || '[]');
+      const foundUser = storedUsers.find((user: any) => user.username === username && user.email === email && user.password === password);
+
+      if (foundUser) {
+        this.currentUser = { ...foundUser, role: 'user' };
         this.isAdmin = false;
-        this.saveUserToLocalStorage(this.currentUser, 'fake-token');
+        const token = this.generateAuthToken(username, email);
         localStorage.setItem('auth_token', 'fake-token');
         localStorage.setItem('user_data', JSON.stringify(this.currentUser));
-        localStorage.setItem('username', username);
+
         return of({
           isAdmin: false,
-          data: { token: 'fake-token', userData: this.currentUser },
+          data: { token: 'fake-token', userData: this.currentUser }
         });
       } else {
-        return this.http
-          .post<any>('/api/sign', { username, email, password })
-          .pipe(
-            tap((response) => {
-              this.currentUser = response.data.userData;
-              this.isAdmin = false;
-              localStorage.setItem('auth_token', response.data.token);
-              localStorage.setItem(
-                'user_data',
-                JSON.stringify(this.currentUser)
-              );
-              localStorage.setItem('username', username);
-        this.saveUserToLocalStorage(this.currentUser, 'fake-token');
+        storedUsers.push({ username, email, password, role: 'user' });
+        localStorage.setItem('stored_users', JSON.stringify(storedUsers));
 
-            }),
-            catchError((error) => {
-              console.error('sign error:', error);
-              return of({ error: 'sign failed' });
-            })
-          );
+        this.currentUser = { username, email, role: 'user' };
+        this.isAdmin = false;
+        localStorage.setItem('auth_token', 'fake-token');
+        localStorage.setItem('user_data', JSON.stringify(this.currentUser));
+
+        return of({
+          isAdmin: false,
+          data: { token: 'fake-token', userData: this.currentUser }
+        });
       }
     }
+  }
+  private generateAuthToken(username: string, email: string): string {
+    return `${username}:${email}`;
   }
   private saveUserToLocalStorage(user: any, token: string): void {
     localStorage.setItem('auth_token', token);
@@ -168,9 +216,15 @@ export class AuthDataService {
   //   }
   //   return this.currentUser;
   // }
-  getCurrentUser(): Observable<any> {
-    this.currentUser = JSON.parse(localStorage.getItem('user_data') || 'null');
-    return this.currentUserSubject.asObservable();
+
+
+  // getCurrentUser(): Observable<any> {
+  //   this.currentUser = JSON.parse(localStorage.getItem('user_data') || 'null');
+  //   return this.currentUserSubject.asObservable();
+  // }
+  getCurrentUser(): any {
+    const userData = localStorage.getItem('user_data');
+    return userData ? JSON.parse(userData) : null;
   }
 
   //lal reservation
@@ -210,7 +264,7 @@ export class AuthDataService {
   buyNow(item: any): Observable<any> {
     const currentUser = this.getCurrentUser();
     const purchase = {
-      username: currentUser,
+      username: currentUser.username,
       name: item.name,
       description: item.description,
       price: item.price,
@@ -223,6 +277,30 @@ export class AuthDataService {
 
     return of({ success: true, purchase });
   }
+  // buyNow(item: any): Observable<any> {
+  //   this.getCurrentUser().subscribe(currentUser => {
+  //     if (!currentUser) {
+  //       console.error('No user is currently logged in.');
+  //       return of({ success: false, message: 'No user is currently logged in.' });
+  //     }
+
+  //     const purchase = {
+  //       username: currentUser.username,
+  //       name: item.name,
+  //       description: item.description,
+  //       price: item.price,
+  //       id: new Date().getTime()
+  //     };
+
+  //     const currentPurchases = JSON.parse(localStorage.getItem('purchases') || '[]');
+  //     currentPurchases.push(purchase);
+  //     localStorage.setItem('purchases', JSON.stringify(currentPurchases));
+
+  //     return of({ success: true, purchase });
+  //   });
+  //   return of({ success: false, message: 'Processing purchase.' });
+  // }
+
 
 
 
@@ -307,34 +385,50 @@ export class AuthDataService {
 //   }
 // }
 login(username: string, password: string): Observable<any> {
-  // Example: Check if admin credentials (replace with actual admin check logic)
   const isAdmin = username === 'admin' && password === 'admin123';
 
   if (isAdmin) {
     this.currentUser = { username, role: 'admin' };
     this.isAdmin = true;
-    localStorage.setItem('auth_token', 'fake-token');
+    const token = this.generateAuthToken(username, 'admin@example.com');
     localStorage.setItem('user_data', JSON.stringify(this.currentUser));
+    localStorage.setItem('auth_token', 'fake-token');
 
     return of({
       isAdmin: true,
-      data: { token: 'fake-token', userData: this.currentUser },
+      data: { token: 'fake-token', userData: this.currentUser }
     });
   } else {
-    return this.http.post<any>('/api/login', { username, password }).pipe(
-      tap((response) => {
-        this.currentUser = response.data.userData;
-        this.isAdmin = false;
-        localStorage.setItem('auth_token', response.data.token);
-        localStorage.setItem('user_data', JSON.stringify(this.currentUser));
-      }),
-      catchError((error) => {
-        console.error('Login error:', error);
-        return of({ error: 'Invalid username or password' });
-      })
-    );
+    const storedUsers = JSON.parse(localStorage.getItem('stored_users') || '[]');
+    const foundUser = storedUsers.find((user: any) => user.username === username && user.password === password);
+
+    if (foundUser) {
+      this.currentUser = { ...foundUser };
+      this.isAdmin = false;
+      const token = this.generateAuthToken(username, foundUser.email);
+      localStorage.setItem('user_data', JSON.stringify(this.currentUser));
+      localStorage.setItem('auth_token', 'fake-token');
+
+      return of({
+        isAdmin: false,
+        data: { token: 'fake-token', userData: this.currentUser }
+      });
+    } else {
+      return of({ error: 'Invalid username or password' });
+    }
   }
 }
+
+// private getStoredUser(username: string, password: string): any {
+//   const storedUserData = localStorage.getItem('user_data');
+//   if (storedUserData) {
+//     const storedUser = JSON.parse(storedUserData);
+//     if (storedUser.username === username && storedUser.password === password) {
+//       return storedUser;
+//     }
+//   }
+//   return null;
+// }
 }
 
 export interface User {
