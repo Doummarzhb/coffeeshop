@@ -35,6 +35,7 @@ export class MenuComponent implements OnInit {
   editingIndex: number | null = null;
   editingItem = { name: '', price: '', description: '', image: '' };
   filteredItems: any[] = this.items;
+  total: any;
 
   constructor(
     private auth_data_service: AuthDataService,
@@ -134,5 +135,14 @@ export class MenuComponent implements OnInit {
       );
     }
   }
-
+  addTotal(item: any){
+    this.items.push(item);
+    this.calculateTotal();
+  }
+  private calculateTotal() {
+    this.total = this.items.reduce((acc, curr) => acc + parseFloat(curr.price), 0);
+  }
+  // addTotal(item: any) {
+  //   this.auth_data_service.addToCart(item);
+  // }
 }

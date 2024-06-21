@@ -5,8 +5,6 @@ import { AuthDataService } from '../../services/auth-data.service';
 
 @Component({
   selector: 'app-login',
-  // standalone: true,
-  // imports: [],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

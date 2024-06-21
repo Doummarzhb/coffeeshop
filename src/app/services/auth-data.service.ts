@@ -346,6 +346,15 @@ login(username: string, password: string): Observable<any> {
     }
   }
 }
+addTotal(item: any) {
+  let cartItems = JSON.parse(localStorage.getItem('cart_items') || '[]');
+  cartItems.push(item);
+  localStorage.setItem('cart_items', JSON.stringify(cartItems));
+}
+getCartItemsAnother(): Observable<any[]> {
+  const cartItems = JSON.parse(localStorage.getItem('cart_items') || '[]');
+  return of(cartItems);
+}
 
 
 }

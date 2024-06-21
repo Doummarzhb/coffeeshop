@@ -28,6 +28,7 @@ import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { LoginComponent } from './pages/login/login.component';
+import { TotalItemuserComponent } from './pages/total-itemuser/total-itemuser.component';
 // import { ToastModule } from 'primeng/toast';
 // import { SplitButtonModule } from 'primeng/splitbutton';
 // import { UserService } from './manage-users/services/user.service';
@@ -43,6 +44,7 @@ import { LoginComponent } from './pages/login/login.component';
     FeedbackComponent,
     CartadminComponent,
     LoginComponent,
+    TotalItemuserComponent
   ],
   imports: [
     BrowserModule,

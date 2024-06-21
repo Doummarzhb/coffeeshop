@@ -11,6 +11,7 @@ import { ManageReservationsComponent } from '../manage-reservations/manage-reser
 import { FeedbackComponent } from '../pages/feedback/feedback.component';
 import { CartadminComponent } from '../pages/cartadmin/cartadmin.component';
 import { LoginComponent } from '../pages/login/login.component';
+import { TotalItemuserComponent } from '../pages/total-itemuser/total-itemuser.component';
 
 
 
@@ -24,6 +25,8 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent},
   {path:'sign',component:SignComponent},
   {path:'login',component:LoginComponent},
+  {path:'total-itemuser',component:TotalItemuserComponent},
+
 
 
   { path: 'reservation', component: ReservationComponent },
