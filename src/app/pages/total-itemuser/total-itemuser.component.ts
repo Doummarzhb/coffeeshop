@@ -38,5 +38,9 @@ export class TotalItemuserComponent  implements OnInit{
     this.loadCartItems();
 
   }
+  removeFromCart(item: any) {
+    this.auth_data_service.removeFromAnotherCart(item);
+    this.loadCartItems();
+  }
 
 }

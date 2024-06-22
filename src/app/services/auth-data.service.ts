@@ -307,6 +307,16 @@ getUserCartItems(): Observable<any[]> {
   const cartItems = JSON.parse(localStorage.getItem(currentUser.username + '_cart_items') || '[]');
   return of(cartItems);
 }
+removeFromAnotherCart(item: any): void {
+  const currentUser = this.getCurrentUser();
+  if (!currentUser || !currentUser.username) {
+    console.error('User not logged in');
+    return;
+  }
+  let cartItems = JSON.parse(localStorage.getItem(currentUser.username + '_cart_items') || '[]');
+  cartItems = cartItems.filter((cartItem: any) => cartItem.name !== item.name || cartItem.price !== item.price);
+  localStorage.setItem(currentUser.username + '_cart_items', JSON.stringify(cartItems));
+}
 
 
 
