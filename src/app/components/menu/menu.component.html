@@ -1,4 +1,4 @@
-<div *ngIf="userRole === 'admin'">
+<div *ngIf="userRole === 'admin'" class="admin-container">
   <h2>Admin Page</h2>
   <p>Welcome, admin! You have full access to the system.</p>
   <button (click)="showAddMenuItemForm = !showAddMenuItemForm">
@@ -6,14 +6,22 @@
   </button>
   <div *ngIf="showAddMenuItemForm">
     <form (ngSubmit)="addNewItem()">
-      <label for="name">Name:</label>
-      <input id="name" [(ngModel)]="newItem.name" name="name" required />
-      <label for="price">Price:</label>
-      <input id="price" [(ngModel)]="newItem.price" name="price" required />
-      <label for="description">Description:</label>
-      <input id="description" [(ngModel)]="newItem.description" name="description" required />
-      <label for="image">Image URL:</label>
-      <input id="image" [(ngModel)]="newItem.image" name="image" required />
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" [(ngModel)]="newItem.name" name="name" required />
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input id="price" [(ngModel)]="newItem.price" name="price" required />
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input id="description" [(ngModel)]="newItem.description" name="description" required />
+      </div>
+      <div class="form-group">
+        <label for="image">Image URL:</label>
+        <input id="image" [(ngModel)]="newItem.image" name="image" required />
+      </div>
       <button type="submit">Add Item</button>
     </form>
   </div>
@@ -40,9 +48,12 @@
         <button *ngIf="userRole !== 'admin'" mat-button routerLink="/checkout" color="white" (click)="buyNow(item)">
           BuyNow
         </button>
+
         <button *ngIf="userRole !== 'admin'" mat-button routerLink="/checkout" color="white" (click)="addToAnotherCart(item)">
           addtocard
-        </button>
+          </button>
+
+
 
         <button *ngIf="userRole === 'admin'" mat-button color="warn" (click)="deleteItem(i)">
           Delete
@@ -55,14 +66,22 @@
 
     <div *ngIf="editingIndex === i">
       <form (ngSubmit)="updateItem()">
-        <label for="edit-name">Name:</label>
-        <input id="edit-name" [(ngModel)]="editingItem.name" name="edit-name" required />
-        <label for="edit-price">Price:</label>
-        <input id="edit-price" [(ngModel)]="editingItem.price" name="edit-price" required />
-        <label for="edit-description">Description:</label>
-        <input id="edit-description" [(ngModel)]="editingItem.description" name="edit-description" required />
-        <label for="edit-image">Image URL:</label>
-        <input id="edit-image" [(ngModel)]="editingItem.image" name="edit-image" required /><br>
+        <div class="form-group">
+          <label for="edit-name">Name:</label>
+          <input id="edit-name" [(ngModel)]="editingItem.name" name="edit-name" required />
+        </div>
+        <div class="form-group">
+          <label for="edit-price">Price:</label>
+          <input id="edit-price" [(ngModel)]="editingItem.price" name="edit-price" required />
+        </div>
+        <div class="form-group">
+          <label for="edit-description">Description:</label>
+          <input id="edit-description" [(ngModel)]="editingItem.description" name="edit-description" required />
+        </div>
+        <div class="form-group">
+          <label for="edit-image">Image URL:</label>
+          <input id="edit-image" [(ngModel)]="editingItem.image" name="edit-image" required />
+        </div>
         <button type="submit">Save Changes</button>
         <button type="button" (click)="cancelEdit()">Cancel</button>
       </form>
