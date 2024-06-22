@@ -45,66 +45,7 @@ export class AuthDataService {
   constructor(private http: HttpClient) {
 
   }
-  //sign up button
-  // onclick(username: string, email: string, password: string): Observable<any> {
-  //   const admin =
-  //     username === 'admin' &&
-  //     email === 'admin@example.com' &&
-  //     password === 'admin123';
-  //   // const user = this.users.find(
-  //   //   (user) =>
-  //   //     user.username === username &&
-  //   //     user.email === email &&
-  //   //     user.password === password
-  //   // );
-  //   if (admin) {
-  //     this.currentUser = { username, email, role: 'admin' };
-  //     this.isAdmin = true;
-  //     localStorage.setItem('auth_token', 'fake-token');
-  //     localStorage.setItem('user_data', JSON.stringify(this.currentUser));
 
-  //     return of({
-  //       isAdmin: true,
-  //       data: { token: 'fake-token', userData: this.currentUser },
-  //     });
-  //   } else {
-  //     // const user = this.users.find(user => user.username === username && user.email === email && user.password === password);
-  //     if (!admin) {
-  //       // this.user = { ...user, role: 'user' };
-  //       this.currentUser = !admin;
-  //       this.isAdmin = false;
-  //       this.saveUserToLocalStorage(this.currentUser, 'fake-token');
-  //       localStorage.setItem('auth_token', 'fake-token');
-  //       localStorage.setItem('user_data', JSON.stringify(this.currentUser));
-  //       localStorage.setItem('username', username);
-  //       return of({
-  //         isAdmin: false,
-  //         data: { token: 'fake-token', userData: this.currentUser },
-  //       });
-  //     } else {
-  //       return this.http
-  //         .post<any>('/api/sign', { username, email, password })
-  //         .pipe(
-  //           tap((response) => {
-  //             this.currentUser = response.data.userData;
-  //             this.isAdmin = false;
-  //             localStorage.setItem('auth_token', response.data.token);
-  //             localStorage.setItem(
-  //               'user_data',
-  //               JSON.stringify(this.currentUser)
-  //             );
-  //             localStorage.setItem('username', username);
-  //       this.saveUserToLocalStorage(this.currentUser, 'fake-token');
-
-  //           }),
-  //           catchError((error) => {
-  //             console.error('sign error:', error);
-  //             return of({ error: 'sign failed' });
-  //           })
-  //         );
-  //     }
-  //   }
-  // }
   onclick(username: string, email: string, password: string): Observable<any> {
     const isAdmin = username === 'admin' && email === 'admin@example.com' && password === 'admin123';
 
@@ -189,10 +130,12 @@ export class AuthDataService {
     }
   }
 
-  getCartItems(): Observable<any[]> {
-    const cartItems = JSON.parse(localStorage.getItem('cart_items') || '[]');
-    return of(cartItems);
-  }
+
+    // const currentUser = this.getCurrentUser();
+    // const cartItems = JSON.parse(localStorage.getItem('cart_items') || '[]');
+    // const userCartItems = cartItems.filter((item: any) => item.username === currentUser.username);
+    // return of(userCartItems);
+
 
   getMenuItems(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/items`).pipe(
@@ -289,21 +232,13 @@ export class AuthDataService {
   }
 
 
-  // getPurchases(): Observable<any[]> {
-  //   const purchases = JSON.parse(localStorage.getItem('purchases') || '[]');
-  //   return of(purchases);
-  // }
   getPurchases(): Observable<any[]> {
     const purchases = JSON.parse(localStorage.getItem('purchases') || '[]');
     this.purchaseInfoSubject.next(purchases);
     return this.purchaseInfoSubject.asObservable();
   }
 
-  // deletePurchase(purchaseId: number): void {
-  //   const updatedPurchases = this.purchasesSubject.value.filter(p => p.id !== purchaseId);
-  //   this.purchasesSubject.next(updatedPurchases);
-  //   localStorage.setItem('purchases', JSON.stringify(updatedPurchases));
-  // }
+
   deletePurchase(purchaseId: number): Observable<void> {
     const currentPurchases = this.purchaseInfoSubject.value;
     const updatedPurchases = currentPurchases.filter(p => p.id !== purchaseId);
@@ -346,15 +281,34 @@ login(username: string, password: string): Observable<any> {
     }
   }
 }
-addTotal(item: any) {
-  let cartItems = JSON.parse(localStorage.getItem('cart_items') || '[]');
+
+addToAnotherCart(item: any) {
+  const currentUser = this.getCurrentUser();
+  if (!currentUser || !currentUser.username) {
+    console.error('User not logged in');
+    return;
+  }
+  let cartItems = JSON.parse(localStorage.getItem(currentUser.username + '_cart_items') || '[]');
   cartItems.push(item);
-  localStorage.setItem('cart_items', JSON.stringify(cartItems));
+  localStorage.setItem(currentUser.username + '_cart_items', JSON.stringify(cartItems));
 }
-getCartItemsAnother(): Observable<any[]> {
+
+
+getCartItems(): Observable<any[]> {
   const cartItems = JSON.parse(localStorage.getItem('cart_items') || '[]');
   return of(cartItems);
 }
+getUserCartItems(): Observable<any[]> {
+  const currentUser = this.getCurrentUser();
+  if (!currentUser || !currentUser.username) {
+    console.error('User not logged in');
+    return of([]);
+  }
+  const cartItems = JSON.parse(localStorage.getItem(currentUser.username + '_cart_items') || '[]');
+  return of(cartItems);
+}
+
+
 
 
 }

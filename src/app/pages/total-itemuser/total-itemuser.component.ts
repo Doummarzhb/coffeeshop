@@ -16,7 +16,7 @@ export class TotalItemuserComponent  implements OnInit{
   }
 
   loadCartItems() {
-    this.auth_data_service.getCartItems().subscribe(
+    this.auth_data_service.getUserCartItems().subscribe(
       (cartItems) => {
         this.cartItems = cartItems;
         this.calculateTotal();
@@ -33,4 +33,10 @@ export class TotalItemuserComponent  implements OnInit{
       return !isNaN(price) ? acc + price : acc;
     }, 0);
   }
+  addToAnotherCart(item: any) {
+    this.auth_data_service.addToAnotherCart(item);
+    this.loadCartItems();
+
+  }
+
 }

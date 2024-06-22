@@ -30,7 +30,7 @@ export class MenuComponent implements OnInit {
   showAddMenuItemForm = false;
   newItem = { name: '', price: '', description: '', image: '' };
   items: any[] = [];
-  cartItems: any[] | undefined;
+  cartItems: any[] =[];
   searchTerm: string = '';
   editingIndex: number | null = null;
   editingItem = { name: '', price: '', description: '', image: '' };
@@ -135,14 +135,21 @@ export class MenuComponent implements OnInit {
       );
     }
   }
-  addTotal(item: any){
-    this.items.push(item);
+
+  // private calculateTotal() {
+  //   this.total = this.items.reduce((acc, curr) => acc + parseFloat(curr.price), 0);
+  // }
+
+
+  addToAnotherCart(item: any){
+    this.auth_data_service.addToAnotherCart(item);
+
     this.calculateTotal();
   }
-  private calculateTotal() {
-    this.total = this.items.reduce((acc, curr) => acc + parseFloat(curr.price), 0);
+  calculateTotal() {
+    this.total = this.cartItems.reduce((acc, curr) => {
+      const price = parseFloat(curr.price);
+      return !isNaN(price) ? acc + price : acc;
+    }, 0);
   }
-  // addTotal(item: any) {
-  //   this.auth_data_service.addToCart(item);
-  // }
 }
