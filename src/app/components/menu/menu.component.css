@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #f5f5f5;
@@ -97,19 +98,21 @@ button:hover {
 /* Menu Item Styles */
 ul {
   list-style: none;
-  display: flex;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap; /* Ensures items wrap to next line */
+  justify-content: space-between; /* Space between items */
 }
 
 li {
+  width: calc(25% - 10px); /* Adjust the width as needed */
   margin-bottom: 20px;
-  width: 25%;
-  margin-right: 10px;
 }
 
 mat-card {
   background-color: #fff;
   color: #333;
+  width: 100%; /* Ensure cards take full width of their container */
 }
 
 mat-card-header {
@@ -142,7 +145,7 @@ mat-card-actions {
 mat-card-actions button {
   background-color: #8b4513;
   color: white;
-  margin-right: 2px;
+  margin-right: 5px;
 }
 
 mat-card-actions button:hover {
