@@ -1,24 +1,23 @@
 <div class="cart-container">
   <h2>Cart Items</h2>
   <div *ngIf="cartItems.length > 0">
-
-  <table class="cart-table">
-    <thead>
-      <tr>
-        <th>Item Name</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of cartItems">
-        <td>{{ item.name }}</td>
-        <td>{{ item.price }}</td>
-        <td><button (click)="removeFromCart(item)">Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-  <p>Total: {{ total }}</p>
-  <button (click)="clearCart()">Clear Cart</button>
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>{{ item.name }}</td>
+          <td>{{ item.price }}</td>
+          <td><button class="delete-button" (click)="removeFromCart(item)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="total">Total: {{ total }}$</p>
+    <button class="checkout-button" (click)="clearCart()">Checkout Order</button>
   </div>
-
 </div>

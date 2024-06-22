@@ -56,3 +56,35 @@ h2 {
   color: #8b4513;
   font-family: 'Arial', sans-serif;
 }
+
+.delete-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+}
+
+.delete-button:hover {
+  background-color: #ff1a1a;
+}
+
+.checkout-button {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  background-color: #8b4513;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.checkout-button:hover {
+  background-color: #6a3010;
+}
