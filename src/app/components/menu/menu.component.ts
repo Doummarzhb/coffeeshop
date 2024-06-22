@@ -136,7 +136,7 @@ export class MenuComponent implements OnInit {
     }
   }
   addTotal(item: any){
-    this.items.push(item);
+    // this.items.push(item);
     this.calculateTotal();
   }
   private calculateTotal() {
