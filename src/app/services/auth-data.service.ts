@@ -317,7 +317,14 @@ removeFromAnotherCart(item: any): void {
   cartItems = cartItems.filter((cartItem: any) => cartItem.name !== item.name || cartItem.price !== item.price);
   localStorage.setItem(currentUser.username + '_cart_items', JSON.stringify(cartItems));
 }
-
+clearCart(): void {
+  const currentUser = this.getCurrentUser();
+  if (!currentUser || !currentUser.username) {
+    console.error('User not logged in');
+    return;
+  }
+  localStorage.removeItem(currentUser.username + '_cart_items');
+}
 
 
 
