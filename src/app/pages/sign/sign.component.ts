@@ -40,23 +40,4 @@ export class SignComponent {
       }
     });
   }
-
-  // onclick(_username: string, _email: string, _password: string) {
-  //   this.auth_data_service.onclick(this.username, this.email, this.password,)
-  //     .subscribe(response => {
-  //       if (response.success) {
-  //         localStorage.setItem('user_data', JSON.stringify({ role: this.userRole }));
-  //         if (this.userRole === '') {
-  //           this.router.navigate(['/home']);
-  //         } else if (this.userRole === 'admin') {
-  //           this.router.navigate(['/home']);
-  //         }
-  //       } else {
-  //         console.error('Signup failed:', response.error);
-  //       }
-  //     });
-  // }
-
 }
-  // standalone: true,
- // imports: [FormsModule],

@@ -18,10 +18,6 @@ export class NavComponent {
     const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
     this.userRole = userData.role;
   }
-  // userRole: string = '';
-  // logout(){
-
-  // }
   constructor(public auth_data_service:AuthDataService){}
 }
 
