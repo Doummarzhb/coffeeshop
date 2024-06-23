@@ -9,7 +9,7 @@ import { AuthDataService } from '../../services/auth-data.service';
 export class TotalItemuserComponent  implements OnInit{
   item: any[] = [];
   cartItems: any[] = [];
-    total: number = 0;
+  total: number = 0;
   constructor(private auth_data_service:AuthDataService) { }
   ngOnInit(): void {
     this.loadCartItems();
