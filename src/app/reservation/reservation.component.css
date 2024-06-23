@@ -1,63 +1,97 @@
 body {
-  background-color: black;
-  color: white; /* لون النص الافتراضي لتفادي النص غير المرئي */
-  margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
 }
-.reservation-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-color: #8b4513;
-  color: white;
+
+.card {
   padding: 20px;
-  border: 2px solid black;
-  border-radius: 10px;
-  animation: fadeIn 2s ease-in-out;
+  margin: 20px auto;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.reservation-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.reservation-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #6a3010;
+  animation: slideIn 1s forwards;
+}
+
+.reservation-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #6a3010;
+  animation: slideIn 1s forwards;
 }
 
 h2 {
+  color: #6a3010;
+  text-align: center;
   margin-bottom: 20px;
+  animation: fadeInDown 1s ease-in-out;
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
 }
-select{
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-}
+
 label {
-  margin-top: 10px;
-  margin-bottom: 5px;
+  color: #6a3010;
   font-weight: bold;
 }
 
-input {
+input, select {
   padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #6a3010;
+  outline: none;
 }
 
 button {
-  background-color: white;
-  color: #8b4513;
   padding: 10px 20px;
-  border: 1px solid black;
-  border-radius: 5px;
+  background-color: #6a3010;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
-  background-color: black;
-  color: white;
+  background-color: #8b3f17;
+  transform: scale(1.05);
 }
 
 @keyframes fadeIn {
@@ -69,3 +103,22 @@ button:hover {
   }
 }
 
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

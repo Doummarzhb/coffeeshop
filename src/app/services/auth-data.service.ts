@@ -318,13 +318,13 @@ removeFromAnotherCart(item: any): void {
   localStorage.setItem(currentUser.username + '_cart_items', JSON.stringify(cartItems));
 }
 clearCart(): void {
-  const currentUser = this.getCurrentUser();
-  if (!currentUser || !currentUser.username) {
-    console.error('User not logged in');
-    return;
+    const currentUser = this.getCurrentUser();
+    if (!currentUser || !currentUser.username) {
+      console.error('User not logged in');
+      return;
+    }
+    localStorage.removeItem(currentUser.username + '_cart_items');
   }
-  localStorage.removeItem(currentUser.username + '_cart_items');
-}
 
 
 
