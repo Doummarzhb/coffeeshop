@@ -12,7 +12,7 @@
 
       <a class="nav-link" routerLink="/manage-reservations" routerLinkActive="active-link" *ngIf="userRole === 'admin'"><span class="pi pi-user">Manage Reservations</span></a>
       <a class="nav-link" routerLink="/cartadmin"  *ngIf="userRole === 'admin'" routerLinkActive="active-link"><span class="pi pi-shopping-cart"></span></a>
-   <a class="nav-link" routerLink="/total-itemuser" routerLinkActive="active-link"  *ngIf="userRole !== 'admin'"><span class="pi pi-eye">  My Cart</span></a>
+   <a class="nav-link" routerLink="/total-itemuser" routerLinkActive="active-link"  *ngIf="userRole !== 'admin'"><span class="pi pi-shopping-cart">  My Cart</span></a>
    <a class="nav-link" routerLink="/myaccountuser" routerLinkActive="active-link"  *ngIf="userRole !== 'admin'"><span class="pi pi-eye">  My account</span></a>
 
 

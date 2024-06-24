@@ -382,7 +382,7 @@ submitReservation(reservationData: any): Observable<any> {
       })
     );
   }
-   uploadProfilePicture(formData: FormData): Observable<any> {
+  uploadProfilePicture(formData: FormData): Observable<any> {
     return this.http.post<any>('api/upload-profile-picture', formData);
   }
   // changePassword(email: string, currentPassword: string, newPassword: string): Observable<any> {
