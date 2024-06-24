@@ -1,6 +1,6 @@
 <div class="user-details" *ngIf="username">
   <h2>My Account Details</h2>
-    <p><strong>Name:</strong> {{ username.name }}</p>
+    <p><strong>Name:</strong> {{ username.username }}</p>
     <p><strong>Email:</strong>
       <ng-container *ngIf="!editingEmail; else editEmailBlock">{{ username.email }}</ng-container>
       <ng-template #editEmailBlock>
