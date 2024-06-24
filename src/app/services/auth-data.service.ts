@@ -363,15 +363,41 @@ submitReservation(reservationData: any): Observable<any> {
   private getStoredPurchases(): any[] {
     return JSON.parse(localStorage.getItem('purchases') || '[]');
   }
+  saveUserToLocalStoragee(user: any, token: string): void {
+    localStorage.setItem('user_data', JSON.stringify(user));
+    localStorage.setItem('auth_token', token);
+  }
 
-
+  removeProfilePicture(): Observable<void> {
+    const userId = this.getCurrentUser()?.id;
+    if (!userId) {
+      console.error('User not logged in or user ID not found');
+      return of();
+    }
+    const removeProfileUrl = `${this.apiUrl}/users/${userId}/profile-picture`;
+    return this.http.delete<void>(removeProfileUrl).pipe(
+      catchError((error) => {
+        console.error('Failed to remove profile picture:', error);
+        return of();
+      })
+    );
+  }
+   uploadProfilePicture(formData: FormData): Observable<any> {
+    return this.http.post<any>('api/upload-profile-picture', formData);
+  }
+  // changePassword(email: string, currentPassword: string, newPassword: string): Observable<any> {
+  //   const changePasswordUrl = 'api/change-password'; // Replace with your actual API endpoint
+  //   const payload = { email, currentPassword, newPassword };
+  //   return this.http.post<any>(changePasswordUrl, payload);
+  // }
 
 }
 
 export interface User {
-  username: any;
+  username: string;
   id: string;
   name: string;
   email: string;
+  profilePictureUrl?: string;
   isAdmin: boolean;
 }

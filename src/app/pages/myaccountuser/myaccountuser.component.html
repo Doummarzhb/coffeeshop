@@ -1,0 +1,21 @@
+<div class="user-details" *ngIf="username">
+  <h2>My Account Details</h2>
+    <p><strong>Name:</strong> {{ username.name }}</p>
+    <p><strong>Email:</strong>
+      <ng-container *ngIf="!editingEmail; else editEmailBlock">{{ username.email }}</ng-container>
+      <ng-template #editEmailBlock>
+        <input type="email" [(ngModel)]="newEmail" />
+        <button (click)="saveEmail()">Save</button>
+        <button (click)="cancelEditEmail()">Cancel</button>
+      </ng-template>
+      <button *ngIf="!editingEmail" (click)="editEmail()">Edit</button>
+    </p>
+  <div class="profile-picture">
+    <img *ngIf="username.profilePictureUrl" [src]="username.profilePictureUrl" alt="Profile Picture">
+    <ng-container *ngIf="!username.profilePictureUrl">
+      <span>No profile picture uploaded</span>
+    </ng-container>
+    <button *ngIf="username.profilePictureUrl" (click)="removeProfilePicture()">Remove Picture</button>
+  </div>
+
+</div>

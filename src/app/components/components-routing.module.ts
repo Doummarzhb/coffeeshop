@@ -12,6 +12,7 @@ import { FeedbackComponent } from '../pages/feedback/feedback.component';
 import { CartadminComponent } from '../pages/cartadmin/cartadmin.component';
 import { LoginComponent } from '../pages/login/login.component';
 import { TotalItemuserComponent } from '../pages/total-itemuser/total-itemuser.component';
+import { MyaccountuserComponent } from '../pages/myaccountuser/myaccountuser.component';
 
 
 
@@ -24,6 +25,8 @@ const routes: Routes = [
   {path:'sign',component:SignComponent},
   {path:'login',component:LoginComponent},
   {path:'total-itemuser',component:TotalItemuserComponent},
+  {path:'myaccountuser',component:MyaccountuserComponent},
+
 
   { path: 'reservation', component: ReservationComponent },
   { path: 'manage-reservations', component: ManageReservationsComponent },

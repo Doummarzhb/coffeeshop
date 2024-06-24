@@ -29,6 +29,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { LoginComponent } from './pages/login/login.component';
 import { TotalItemuserComponent } from './pages/total-itemuser/total-itemuser.component';
+import { MyaccountuserComponent } from './pages/myaccountuser/myaccountuser.component';
 // import { ToastModule } from 'primeng/toast';
 // import { SplitButtonModule } from 'primeng/splitbutton';
 // import { UserService } from './manage-users/services/user.service';
@@ -44,7 +45,8 @@ import { TotalItemuserComponent } from './pages/total-itemuser/total-itemuser.co
     FeedbackComponent,
     CartadminComponent,
     LoginComponent,
-    TotalItemuserComponent
+    TotalItemuserComponent,
+    MyaccountuserComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +67,7 @@ import { TotalItemuserComponent } from './pages/total-itemuser/total-itemuser.co
     MessagesModule,
     ButtonModule,
     ToastModule,
+
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
