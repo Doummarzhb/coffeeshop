@@ -58,16 +58,23 @@ export class ManageReservationsComponent  implements OnInit{
 
   getSelectedItemName(itemId: string): string {
     const selectedItem = this.items.find(item => item.id === itemId);
-    return selectedItem ? selectedItem.name : '';
+    console.log('Selected item:',selectedItem);
+    return selectedItem ? selectedItem.name : 'Unkown Item';
   }
 
-  deleteReservation(reservationId: number): void {
-    this.auth_data_service.deleteReservation(reservationId).subscribe(() => {
-      this.reservations = this.reservations.filter(r => r.id !== reservationId);
-      this.saveReservations();
-    });
-  }
+  // deleteReservation(reservationId: number): void {
+  //   this.auth_data_service.deleteReservation(reservationId).subscribe(() => {
+  //     this.reservations = this.reservations.filter(r => r.id !== reservationId);
+  //     this.saveReservations();
+  //   });
+  // }
 
+  deleteReservation(index: number): void {
+    console.log(`Attempting to delete reservation at index: ${index}`);
+    this.reservations.splice(index, 1);
+    this.saveReservations();
+  }
+  
   saveReservations(): void {
     localStorage.setItem('reservations', JSON.stringify(this.reservations));
   }
