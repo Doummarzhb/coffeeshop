@@ -53,10 +53,11 @@ export class ManageReservationsComponent  implements OnInit{
       }
     );
   }
-  getSelectedItemName(itemId: string): string {
-    const selectedItem = this.items.find(item => item.id === itemId);
-    return selectedItem ? selectedItem.name : 'Unknown Item';
-  }
+
+  // getSelectedItemName(itemId: string): string {
+  //   const selectedItem = this.items.find(item => item.id === itemId);
+  //   return selectedItem ? selectedItem.name : 'Unknown Item';
+  // }
   // saveReservationsToLocalStorage() {
   //   localStorage.setItem('reservations', JSON.stringify(this.reservations));
   // }
@@ -66,22 +67,22 @@ export class ManageReservationsComponent  implements OnInit{
       this.reservations = JSON.parse(storedReservations);
     }
   }
-<<<<<<< HEAD
-  deleteReservation(reservationId: number): void {
-    this.auth_data_service.deleteReservation(reservationId).subscribe(() => {
-      this.reservations = this.reservations.filter(r => r.id !== reservationId);
-      // this.showMessage()
-      this.saveReservations();
 
-    });
-}
+//   deleteReservation(reservationId: number): void {
+//     this.auth_data_service.deleteReservation(reservationId).subscribe(() => {
+//       this.reservations = this.reservations.filter(r => r.id !== reservationId);
+//       // this.showMessage()
+//       this.saveReservations();
+
+//     });
+// }
 saveReservations(): void {
   localStorage.setItem('reservations', JSON.stringify(this.reservations));
 }
 showMessage(severity: string, summary: string, detail?: string): void {
   this.messageService.add({ severity: severity, summary: summary, detail: detail });
 }
-=======
+
 
   getSelectedItemName(itemId: string): string {
     const selectedItem = this.items.find(item => item.id === itemId);
@@ -101,11 +102,11 @@ showMessage(severity: string, summary: string, detail?: string): void {
     this.reservations.splice(index, 1);
     this.saveReservations();
   }
-  
-  saveReservations(): void {
-    localStorage.setItem('reservations', JSON.stringify(this.reservations));
-  }
->>>>>>> 749068f83e3980b3fe59aa71daa1af3f1b2de462
+
+  // saveReservations(): void {
+  //   localStorage.setItem('reservations', JSON.stringify(this.reservations));
+  // }
+
 
 
 }
