@@ -65,11 +65,6 @@ import { TotalItemuserComponent } from './pages/total-itemuser/total-itemuser.co
     MessagesModule,
     ButtonModule,
     ToastModule,
-
-
-
-
-
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

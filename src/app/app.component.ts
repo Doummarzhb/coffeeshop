@@ -9,15 +9,5 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'my-app';
-  // isLoggedIn = false;
 
-  // constructor(private auth_data_service: AuthDataService, private router: Router) {
-  //   this.isLoggedIn = !!localStorage.getItem('auth_token');
-  // }
-
-  // logout() {
-  //   this.auth_data_service.logout();
-  //   this.isLoggedIn = false;
-  //   this.router.navigate(['/sign']);
-  // }
 }

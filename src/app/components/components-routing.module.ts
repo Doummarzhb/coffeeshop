@@ -16,8 +16,6 @@ import { TotalItemuserComponent } from '../pages/total-itemuser/total-itemuser.c
 
 
 
-// import { SignComponent } from '../pages/sign/sign.component';
-
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -27,26 +25,14 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'total-itemuser',component:TotalItemuserComponent},
 
-
-
   { path: 'reservation', component: ReservationComponent },
   { path: 'manage-reservations', component: ManageReservationsComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'cartadmin', component: CartadminComponent },
 
-
-
-
-
-
   { path: 'contact', component: ContactComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', redirectTo: '/home' },
-
-
-
-
-  // { path: 'sign', component: SignComponent },
 
 
 
