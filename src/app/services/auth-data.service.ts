@@ -256,7 +256,14 @@ submitFeedback(feedbackData: any): void {
 
 //----------------------------------------------------------
 //start of the RSERVATION part
+// submitReservation(reservationData: any): Observable<any> {
+//   const currentUser = this.getCurrentUser();
+//   this.reservations.push(reservationData);
+//   localStorage.setItem('reservations', JSON.stringify(this.reservations));
+//   return of({ success: true, reservation: reservationData });
+//
 submitReservation(reservationData: any): Observable<any> {
+  const currentUser = this.getCurrentUser();
   this.reservations.push(reservationData);
   localStorage.setItem('reservations', JSON.stringify(this.reservations));
   return of({ success: true, reservation: reservationData });
@@ -356,6 +363,9 @@ submitReservation(reservationData: any): Observable<any> {
   private getStoredPurchases(): any[] {
     return JSON.parse(localStorage.getItem('purchases') || '[]');
   }
+
+
+
 }
 
 export interface User {
