@@ -4,12 +4,14 @@
 ![coffee4](https://github.com/Doummarzhb/coffeeshop/assets/98951369/0ce914a3-fe4b-4f14-8add-2cd6c20fc3d9)
 ![signup](https://github.com/Doummarzhb/coffeeshop/assets/98951369/dacafc39-21e0-4ff6-842d-90d9826a4caa)
 ![login](https://github.com/Doummarzhb/coffeeshop/assets/98951369/1e587293-f0a1-4e5e-be6c-487031d343ef)
+![footer](https://github.com/Doummarzhb/coffeeshop/assets/98951369/ae9275ab-a163-46ff-9af6-2f7891f7a9ee)
 
 
 
 
 
 admin and user
+
 
 # Coffeshopp177
 
