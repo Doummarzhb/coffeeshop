@@ -66,6 +66,7 @@ export class ManageReservationsComponent  implements OnInit{
       this.reservations = JSON.parse(storedReservations);
     }
   }
+<<<<<<< HEAD
   deleteReservation(reservationId: number): void {
     this.auth_data_service.deleteReservation(reservationId).subscribe(() => {
       this.reservations = this.reservations.filter(r => r.id !== reservationId);
@@ -80,6 +81,31 @@ saveReservations(): void {
 showMessage(severity: string, summary: string, detail?: string): void {
   this.messageService.add({ severity: severity, summary: summary, detail: detail });
 }
+=======
+
+  getSelectedItemName(itemId: string): string {
+    const selectedItem = this.items.find(item => item.id === itemId);
+    console.log('Selected item:',selectedItem);
+    return selectedItem ? selectedItem.name : 'Unkown Item';
+  }
+
+  // deleteReservation(reservationId: number): void {
+  //   this.auth_data_service.deleteReservation(reservationId).subscribe(() => {
+  //     this.reservations = this.reservations.filter(r => r.id !== reservationId);
+  //     this.saveReservations();
+  //   });
+  // }
+
+  deleteReservation(index: number): void {
+    console.log(`Attempting to delete reservation at index: ${index}`);
+    this.reservations.splice(index, 1);
+    this.saveReservations();
+  }
+  
+  saveReservations(): void {
+    localStorage.setItem('reservations', JSON.stringify(this.reservations));
+  }
+>>>>>>> 749068f83e3980b3fe59aa71daa1af3f1b2de462
 
 
 }
