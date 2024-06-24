@@ -43,7 +43,7 @@
       </mat-card-content>
       <mat-card-actions>
         <button *ngIf="userRole !== 'admin'" mat-button routerLink="/reservation" (click)="addToCart(item)">
-          Reservation
+          Reserve
         </button>
         <button *ngIf="userRole !== 'admin'" mat-button routerLink="/checkout" color="white" (click)="buyNow(item)">
           BuyNow
