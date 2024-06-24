@@ -2,7 +2,7 @@
   <p-messages [(value)]="messages" [enableService]="true" color="secondary"></p-messages>
 </div>
 <div class="reservation-container">
-  <h2>Reservation for item </h2>
+  <h2>Reservation Form </h2>
   <form (submit)="submitReservation()">
     <label for="item">Select Item</label>
     <select id="item" [(ngModel)]="selectedItem" name="item" (change)="onItemSelect(selectedItem)">
@@ -18,7 +18,7 @@
     <label for="time">Time </label>
     <input type="time" id="time" [(ngModel)]="reservation.time" name="time" required>
 
-    <button type="submit">Send hajez</button>
+    <button type="submit">Send Reservation</button>
     <!-- <p-messages [(value)]="messages" [enableService]="false" /> -->
   </form>
 </div>
