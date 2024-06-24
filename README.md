@@ -1,4 +1,13 @@
 ![coffee](https://github.com/Doummarzhb/coffeeshop/assets/98951369/aafb0363-2166-42da-a39d-16f9a17c7705)
+![coffee2](https://github.com/Doummarzhb/coffeeshop/assets/98951369/941ac108-c315-4528-b4de-65d086b7ec74)
+![coffee3](https://github.com/Doummarzhb/coffeeshop/assets/98951369/8f839628-a38c-4267-9ad9-5b51ee99772b)
+![coffee4](https://github.com/Doummarzhb/coffeeshop/assets/98951369/0ce914a3-fe4b-4f14-8add-2cd6c20fc3d9)
+![signup](https://github.com/Doummarzhb/coffeeshop/assets/98951369/dacafc39-21e0-4ff6-842d-90d9826a4caa)
+![login](https://github.com/Doummarzhb/coffeeshop/assets/98951369/1e587293-f0a1-4e5e-be6c-487031d343ef)
+
+
+
+
 
 admin and user
 
