@@ -1,6 +1,17 @@
 <div class="user-details" *ngIf="username">
   <h2>My Account Details</h2>
-    <p><strong>Name:</strong> {{ username.username }}</p>
+
+  <div>
+    <p><strong>Name:</strong>
+      <ng-container *ngIf="!editingName; else editNameBlock">{{ username.username }}</ng-container>
+      <ng-template #editNameBlock>
+        <input type="text" [(ngModel)]="newName" />
+        <button (click)="saveName()">Save</button>
+        <button (click)="cancelEditName()">Cancel</button>
+      </ng-template>
+      <button *ngIf="!editingName" (click)="editName()">Edit</button>
+    </p>
+
     <p><strong>Email:</strong>
       <ng-container *ngIf="!editingEmail; else editEmailBlock">{{ username.email }}</ng-container>
       <ng-template #editEmailBlock>
@@ -10,6 +21,8 @@
       </ng-template>
       <button *ngIf="!editingEmail" (click)="editEmail()">Edit</button>
     </p>
+  </div>
+
   <div class="profile-picture">
     <img *ngIf="username.profilePictureUrl" [src]="username.profilePictureUrl" alt="Profile Picture">
     <ng-container *ngIf="!username.profilePictureUrl">
@@ -17,5 +30,4 @@
     </ng-container>
     <button *ngIf="username.profilePictureUrl" (click)="removeProfilePicture()">Remove Picture</button>
   </div>
-
 </div>

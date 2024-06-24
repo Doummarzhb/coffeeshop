@@ -14,7 +14,8 @@ export class MyaccountuserComponent implements OnInit {
   confirmPassword: string = '';
   newPassword: string = '';
   currentPassword: string = '';
-
+  editingName = false;
+  newName = '';
 
   constructor(private authDataService: AuthDataService, private messageService: MessageService) {}
 
@@ -131,4 +132,21 @@ export class MyaccountuserComponent implements OnInit {
 //       }
 //     );
 // }
+editName(): void {
+  if (this.username) {
+    this.newName = this.username.username;
+    this.editingName = true;
+  }
+}
+saveName(): void {
+  if (this.username) {
+    this.username.username = this.newName;
+    this.authDataService.saveUserToLocalStoragee(this.username, 'fake-token');
+    this.editingName = false;
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Name updated successfully!' });
+  }
+}
+cancelEditName(): void {
+  this.editingName = false;
+}
 }
