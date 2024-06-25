@@ -133,9 +133,15 @@ mat-card-subtitle {
 .search-container{
   padding: 10px;
   background-color: #8b4513;
-  border-radius: 20px;
-  size: 15px;
+  border-radius: 25px;
+  size: 50px;
   margin-right: 70%;
+  box-sizing: content-box;
+
+}
+.search-container input{
+  margin-left: 20%;
+  padding: 10px;
 
 }
 
