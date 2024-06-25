@@ -126,15 +126,15 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  applyFilter(): void {
-    if (!this.searchTerm) {
-      this.filteredItems = this.items;
-    } else {
-      this.filteredItems = this.items.filter(item =>
-        item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-    }
-  }
+  // applyFilter(): void {
+  //   if (!this.searchTerm) {
+  //     this.filteredItems = this.items;
+  //   } else {
+  //     this.filteredItems = this.items.filter(item =>
+  //       item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+  //     );
+  //   }
+  // }
 
   // private calculateTotal() {
   //   this.total = this.items.reduce((acc, curr) => acc + parseFloat(curr.price), 0);

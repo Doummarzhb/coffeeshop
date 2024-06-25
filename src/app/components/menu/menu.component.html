@@ -27,11 +27,11 @@
   </div>
 </div>
 
-<input type="text" [(ngModel)]="searchTerm" (keyup)="applyFilter()" class="form-control" placeholder="Search items..." /><br>
-<button (click)="applyFilter()">Filter Items</button>
+<input type="text" [(ngModel)]="searchTerm"  class="form-control" placeholder="Search items..." /><br>
+<!-- <button (click)="applyFilter()">Filter Items</button> -->
 
 <ul>
-  <li *ngFor="let item of filteredItems | filter : searchTerm; let i = index">
+  <li *ngFor="let item of items | filter : searchTerm; let i = index">
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{ item.name }}</mat-card-title>
