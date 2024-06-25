@@ -42,24 +42,24 @@
         <p>{{ item.description }}</p>
       </mat-card-content>
       <mat-card-actions>
-        <button *ngIf="userRole !== 'admin'" mat-button routerLink="/reservation" (click)="addToCart(item)">
-          Reserve
+        <button pButton type="button" icon="pi pi-save" *ngIf="userRole !== 'admin'" mat-button routerLink="/reservation" (click)="addToCart(item)">
+
         </button>
-        <button *ngIf="userRole !== 'admin'" mat-button routerLink="/checkout" color="white" (click)="buyNow(item)">
-          BuyNow
+        <button pButton type="button" icon="pi pi-check" *ngIf="userRole !== 'admin'" mat-button routerLink="/checkout" color="white" (click)="buyNow(item)">
+          
         </button>
 
-        <button *ngIf="userRole !== 'admin'" mat-button routerLink="/checkout" color="white" (click)="addToAnotherCart(item)">
-          addtocard
+        <button pButton type="button" icon="pi pi-plus" *ngIf="userRole !== 'admin'" mat-button routerLink="/checkout" color="white" (click)="addToAnotherCart(item)">
+
           </button>
 
 
 
-        <button *ngIf="userRole === 'admin'" mat-button color="warn" (click)="deleteItem(i)">
-          Delete
+        <button pButton type="button" icon="pi pi-trash"  *ngIf="userRole === 'admin'" mat-button color="warn" (click)="deleteItem(i)">
+
         </button>
-        <button *ngIf="userRole === 'admin'" mat-button color="primary" (click)="editItem(i)">
-          Edit
+        <button pButton type="button" icon="pi pi-pencil" *ngIf="userRole === 'admin'" mat-button color="primary" (click)="editItem(i)">
+
         </button>
       </mat-card-actions>
     </mat-card>

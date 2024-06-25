@@ -4,7 +4,7 @@
     <div class="navbar-nav">
       <a class="nav-link" routerLink="/home" routerLinkActive="active-link"><span class="pi pi-home"> Home</span></a>
       <a class="nav-link" routerLink="/menu"  fragment="menu-section" routerLinkActive="active-link"  ><span class="pi pi-face-smile"> Menu</span></a>
-   <a class="nav-link" routerLink="/reservation" routerLinkActive="active-link"  *ngIf="userRole !== 'admin'"><span class="pi pi-eye"> reservation</span></a>
+   <a class="nav-link" routerLink="/reservation" routerLinkActive="active-link"  *ngIf="userRole !== 'admin'"><span class="pi pi-eye"> Reservation</span></a>
       <a class="nav-link" routerLink="/contact" routerLinkActive="active-link" *ngIf="userRole !== 'admin'"><span class="pi  pi-address-book"> Contact</span></a>
       <a class="nav-link" routerLink="/feedback" routerLinkActive="active-link" *ngIf="userRole === 'admin'"><span class="pi  pi-address-book"> feedback</span></a>
       <a class="nav-link" routerLink="../sign" routerLinkActive="active-link"><span class="pi pi-user">SignUp</span></a>
@@ -13,7 +13,7 @@
       <a class="nav-link" routerLink="/manage-reservations" routerLinkActive="active-link" *ngIf="userRole === 'admin'"><span class="pi pi-user">Manage Reservations</span></a>
       <a class="nav-link" routerLink="/cartadmin"  *ngIf="userRole === 'admin'" routerLinkActive="active-link"><span class="pi pi-shopping-cart"></span></a>
    <a class="nav-link" routerLink="/total-itemuser" routerLinkActive="active-link"  *ngIf="userRole !== 'admin'"><span class="pi pi-shopping-cart">  My Cart</span></a>
-   <a class="nav-link" routerLink="/myaccountuser" routerLinkActive="active-link"  *ngIf="userRole !== 'admin'"><span class="pi pi-eye">  My account</span></a>
+   <a class="nav-link" routerLink="/myaccountuser" routerLinkActive="active-link"  *ngIf="userRole !== 'admin'"><span class="pi pi-eye">  My Account</span></a>
 
 
       <!-- <a class="nav-link"  *ngIf="userRole === 'user'" routerLinkActive="active-link"><span class="pi pi-shopping-cart"></span></a> -->
