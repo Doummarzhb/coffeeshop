@@ -27,11 +27,8 @@
   </div>
 </div>
 
-<!-- <input type="text" [(ngModel)]="searchTerm" (keyup)="applyFilter()" class="form-control" placeholder="Search items..." /><br> -->
-<div class="search-container">
 <input type="text" [(ngModel)]="searchTerm" (keyup)="applyFilter()" class="form-control" placeholder="Search items..." /><br>
-</div>
-<!-- <button (click)="applyFilter()">Filter Items</button> -->
+<button (click)="applyFilter()">Filter Items</button>
 
 <ul>
   <li *ngFor="let item of items | filter : searchTerm; let i = index">
