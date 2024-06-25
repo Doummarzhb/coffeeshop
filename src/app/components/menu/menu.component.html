@@ -27,11 +27,14 @@
   </div>
 </div>
 
+<!-- <input type="text" [(ngModel)]="searchTerm" (keyup)="applyFilter()" class="form-control" placeholder="Search items..." /><br> -->
+<div class="search-container">
 <input type="text" [(ngModel)]="searchTerm" (keyup)="applyFilter()" class="form-control" placeholder="Search items..." /><br>
-<button (click)="applyFilter()">Filter Items</button>
+</div>
+<!-- <button (click)="applyFilter()">Filter Items</button> -->
 
 <ul>
-  <li *ngFor="let item of filteredItems | filter : searchTerm; let i = index">
+  <li *ngFor="let item of items | filter : searchTerm; let i = index">
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{ item.name }}</mat-card-title>
@@ -46,7 +49,7 @@
 
         </button>
         <button pButton type="button" icon="pi pi-check" *ngIf="userRole !== 'admin'" mat-button routerLink="/checkout" color="white" (click)="buyNow(item)">
-          
+
         </button>
 
         <button pButton type="button" icon="pi pi-plus" *ngIf="userRole !== 'admin'" mat-button routerLink="/checkout" color="white" (click)="addToAnotherCart(item)">

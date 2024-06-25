@@ -120,9 +120,21 @@ mat-card-header {
   color: #fff;
 }
 
-mat-card-title, mat-card-subtitle {
+mat-card-title {
   margin: 0;
   text-align: center;
+
+}
+mat-card-subtitle {
+  color: rgb(1, 14, 1);
+  font-size: 20px;
+
+}
+.search-container{
+  padding: 20px;
+  background-color: #871b1b;
+  border-radius: 10px;
+  size: 15px;
 }
 
 mat-card-image {
