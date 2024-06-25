@@ -131,10 +131,12 @@ mat-card-subtitle {
 
 }
 .search-container{
-  padding: 20px;
-  background-color: #871b1b;
-  border-radius: 10px;
+  padding: 10px;
+  background-color: #8b4513;
+  border-radius: 20px;
   size: 15px;
+  margin-right: 70%;
+
 }
 
 mat-card-image {
