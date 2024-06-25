@@ -163,6 +163,11 @@ p {
 
 .form-control {
   border-radius: 3px;
-  width: 98%;
+  width: 50%;
   margin-left: 2px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:hover {
+  border-color: #6a3010;
 }
