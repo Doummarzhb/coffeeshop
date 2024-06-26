@@ -31,6 +31,7 @@ export class AppComponent {
     { label: 'My Account', path: '/myaccountuser', icon: 'pi pi-eye', roles: ['user'] }
   ];
 
+  //sharing data from child to parent (nav->app)
   onButtonClick(message: string){
     console.log(message);
   }
