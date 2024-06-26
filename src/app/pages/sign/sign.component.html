@@ -1,8 +1,9 @@
-<div class="card">
+<!-- the old way of form -->
+<!-- <div class="card">
   <p-messages [(value)]="messages" [enableService]="true" color="secondary"></p-messages>
 </div>
 
- <div class="one">
+<div class="one">
 <div class="signup-container">
   <h2>Signup</h2>
   <form>
@@ -24,4 +25,32 @@
     <p>Already have an account?  <a href="/login">login </a>...</p>
   </div>
 </div>
+</div> -->
+
+<div class="card">
+  <p-messages [(value)]="messages" [enableService]="true" color="secondary"></p-messages>
+</div>
+
+<div class="one">
+  <div class="signup-container">
+    <h2>Signup</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input id="username" formControlName="username" type="text" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input id="password" formControlName="password" type="password" required />
+      </div>
+      <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+    </form>
+    <div class="login-suggestion">
+      <p>Already have an account? <a routerLink="/login">Login here</a>.</p>
+    </div>
+  </div>
 </div>
