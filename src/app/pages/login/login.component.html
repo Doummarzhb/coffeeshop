@@ -20,4 +20,26 @@
     </div>
   </div>
 </div>
-
+<!-- template driven form -->
+<!-- <div class="card">
+  <p-messages [(value)]="messages" [enableService]="true" color="secondary"></p-messages>
+</div>
+<div class="one">
+  <div class="login-container">
+    <h2>Login</h2>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input id="username" name="username" [(ngModel)]="username" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input id="password" name="password" [(ngModel)]="password" type="password" required />
+      </div>
+      <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
+    </form>
+    <div class="signup-suggestion">
+      <p>Don't have an account? <a routerLink="/sign">Sign up here</a>.</p>
+    </div>
+  </div>
+</div> -->

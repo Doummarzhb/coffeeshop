@@ -1,4 +1,4 @@
-<nav class="navbar">
+<!-- <nav class="navbar">
   <div class="container">
     <a class="logo" href="#">_CoffeeShop_<span>.</span></a>
     <div class="navbar-nav">
@@ -8,7 +8,7 @@
       <a class="nav-link" routerLink="/contact" routerLinkActive="active-link" *ngIf="userRole !== 'admin'"><span class="pi  pi-address-book"> Contact</span></a>
       <a class="nav-link" routerLink="/feedback" routerLinkActive="active-link" *ngIf="userRole === 'admin'"><span class="pi  pi-address-book"> feedback</span></a>
       <a class="nav-link" routerLink="../sign" routerLinkActive="active-link"><span class="pi pi-user">SignUp</span></a>
-      <!-- <a class="nav-link" routerLink="../login" routerLinkActive="active-link"><span class="pi pi-user">login</span></a> -->
+
 
       <a class="nav-link" routerLink="/manage-reservations" routerLinkActive="active-link" *ngIf="userRole === 'admin'"><span class="pi pi-user">Manage Reservations</span></a>
       <a class="nav-link" routerLink="/cartadmin"  *ngIf="userRole === 'admin'" routerLinkActive="active-link"><span class="pi pi-shopping-cart"></span></a>
@@ -16,8 +16,22 @@
    <a class="nav-link" routerLink="/myaccountuser" routerLinkActive="active-link"  *ngIf="userRole !== 'admin'"><span class="pi pi-eye">  My Account</span></a>
 
 
-      <!-- <a class="nav-link"  *ngIf="userRole === 'user'" routerLinkActive="active-link"><span class="pi pi-shopping-cart"></span></a> -->
+
+    </div>
+  </div>
+</nav> -->
+<!-- looping in the elements of the navbar where they are being sending from user and admin -->
+
+<nav class="navbar">
+  <div class="container">
+    <a class="logo" href="#">_CoffeeShop_<span>.</span></a>
+    <div class="navbar-nav">
+      <ng-container *ngFor="let link of navLinks">
+        <a class="nav-link" [routerLink]="link.path" routerLinkActive="active-link" *ngIf="link.roles.includes(userRole)">
+          <span [class]="link.icon"> {{ link.label }}</span>
+        </a>
+      </ng-container>
+      <button (click)="onButtonClick()">Click Me</button>
     </div>
   </div>
 </nav>
-

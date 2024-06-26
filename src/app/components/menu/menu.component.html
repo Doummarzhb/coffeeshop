@@ -40,7 +40,7 @@
         <mat-card-title>{{ item.name }}</mat-card-title>
         <mat-card-subtitle>{{ item.price }}</mat-card-subtitle>
       </mat-card-header>
-      <!--property binding :the src att of the img elmnt is bound to the image property of the item object -->
+      <!--property binding :the src attribut of the img elmnt is bound to the image property of the item object -->
       <img mat-card-image [src]="item.image" alt="{{ item.name }}" />
       <mat-card-content>
         <p>{{ item.description }}</p>
@@ -72,6 +72,7 @@
       <form (ngSubmit)="updateItem()">
         <div class="form-group">
           <label for="edit-name">Name:</label>
+          <!-- two-way binding where if there is any changes or updated on the name will change automatically which will help to reduces handling methods -->
           <input id="edit-name" [(ngModel)]="editingItem.name" name="edit-name" required />
         </div>
         <div class="form-group">
