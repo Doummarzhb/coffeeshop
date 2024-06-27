@@ -31,7 +31,8 @@
           <span [class]="link.icon"> {{ link.label }}</span>
         </a>
       </ng-container>
-      <button (click)="onButtonClick()">Click Me</button>
+      <button id="b1" (click)="onButtonClick()">Click Me</button>
+      <app-my-button (myClick)="handleMyClick()"></app-my-button>
     </div>
   </div>
 </nav>

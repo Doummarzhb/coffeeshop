@@ -34,6 +34,7 @@ import { MyaccountuserComponent } from './pages/myaccountuser/myaccountuser.comp
 // import { SplitButtonModule } from 'primeng/splitbutton';
 // import { UserService } from './manage-users/services/user.service';
 // import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MyButtonComponent } from './components/shared/my-button/my-button.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +68,7 @@ import { MyaccountuserComponent } from './pages/myaccountuser/myaccountuser.comp
     MessagesModule,
     ButtonModule,
     ToastModule,
+    MyButtonComponent,
 
   ],
   schemas: [

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthDataService } from '../services/auth-data.service';
 import { CommonModule } from '@angular/common';
+import { MyButtonComponent } from "../components/shared/my-button/my-button.component";
 
 interface NavLink{
   label: string;
@@ -10,13 +11,16 @@ interface NavLink{
   roles: string[];
 }
 @Component({
-  selector: 'app-nav',
-  standalone: true,
-  imports: [RouterModule,CommonModule],
-  templateUrl: './nav.component.html',
-  styleUrl: './nav.component.css'
+    selector: 'app-nav',
+    standalone: true,
+    templateUrl: './nav.component.html',
+    styleUrl: './nav.component.css',
+    imports: [RouterModule, CommonModule, MyButtonComponent]
 })
 export class NavComponent {
+  handleMyClick() {
+    console.log('My Custom Button is clicked');
+  }
   router: any;
   // userRole: string = '';
   @Input()
