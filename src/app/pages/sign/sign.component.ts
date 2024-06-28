@@ -36,6 +36,9 @@ export class SignComponent {
     });
   }
   onSignup(): void {
+
+    // this.signupForm.get('username')?.value;
+
     if (this.signupForm.valid) {
       const { username, email, password } = this.signupForm.value;
       this.auth_data_service.onclick(username, email, password).subscribe({
@@ -44,7 +47,6 @@ export class SignComponent {
             console.error('Signup error:', response.error);
             return;
           }
-          // Assuming successful signup, redirect to login or home page
           this.router.navigate(['/home']);
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Signup successful!' });
         },
@@ -54,9 +56,12 @@ export class SignComponent {
         }
       });
     } else {
+      this.signupForm.markAllAsTouched()
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Form is not valid!' });
     }
   }
+
+  // old method
   // onclick(username: string, email: string, password: string): void {
   //   this.auth_data_service.onclick(username, email, password).subscribe({
   //     next: (response: any) => {
